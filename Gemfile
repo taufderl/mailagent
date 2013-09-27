@@ -50,6 +50,7 @@ gem 'cancan'
 
 gem 'figaro'
 gem 'fcgi'
+gem 'exception_notification'
 
 #todo
 #gem 'simple_form'
