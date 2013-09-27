@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+tadl:
+  name: tadl
+  email: tadl@gmx.de
+
+peter:
+  name: peter
+  email: tadl-peter@taufderl.de
+  
+franz:
+  name: franz
+  email: tadl-franz@taufderl.de

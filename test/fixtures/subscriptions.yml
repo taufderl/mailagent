@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+sub1:
+  user: tadl
+  list: cjg
+
+sub2:
+  user: franz
+  list: kigru
+  
+sub3:
+  user: franz
+  list: mess
