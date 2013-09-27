@@ -49,6 +49,7 @@ gem 'twitter-bootstrap-rails', '~> 2.2.8'
 gem 'cancan'
 
 gem 'figaro'
+gem 'fcgi'
 
 #todo
 #gem 'simple_form'
