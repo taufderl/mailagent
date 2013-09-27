@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Mailagent::Application.config.secret_key_base = '62ff34f3b2f60b4f56bf0ce76bd00d78cdb40c4402ac7b2767a70bd873d559c8ec4c74739dc51ad7eb8c1f6c2bcce9dca2077d56b62c3af642a0edaa061ac504'
+Mailagent::Application.config.secret_key_base = ENV["SECRET_TOKEN"]

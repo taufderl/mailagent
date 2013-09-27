@@ -31,12 +31,10 @@ Mailagent::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-    address:              'hydra.uberspace.de',
+    address:              ENV["EMAIL_SERVER_ADRESS"],
     port:                 587,
-    user_name:            'tadl-mailagent',
-    #user_name:            ENV['EMAIL_USER'],
-    password:             '4B9>1311f0)]u!K',
-    #password:             ENV['EMAIL_SECRET'],
+    user_name:            ENV["EMAIL_USERNAME"],
+    password:             ENV["EMAIL_PASSWORD"],
     authentication:       'plain',
     enable_starttls_auto: true  
   }
