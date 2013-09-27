@@ -77,4 +77,11 @@ Mailagent::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  Mailagent::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[Mailagent] ",
+    :sender_address => %{"notifier" <notifier@taufderl.de>},
+    :exception_recipients => %w{tadl@gmx.de}
+  }
 end
