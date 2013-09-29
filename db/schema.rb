@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924184448) do
+ActiveRecord::Schema.define(version: 20130924171700) do
 
   create_table "lists", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mails", force: true do |t|
-    t.string   "from"
-    t.string   "to"
-    t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,8 +26,8 @@ ActiveRecord::Schema.define(version: 20130924184448) do
     t.datetime "updated_at"
   end
 
-  add_index "subscriptions", ["list_id"], name: "index_subscriptions_on_list_id"
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
+  add_index "subscriptions", ["list_id"], name: "index_subscriptions_on_list_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
