@@ -1,5 +1,7 @@
 Mailagent::Application.routes.draw do
   
+  resources :emails
+
   post "incoming_messages" => 'incoming_message#create'
   
   #test mailer

@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924171700) do
+ActiveRecord::Schema.define(version: 20130929205554) do
+
+  create_table "email_lists", force: true do |t|
+    t.integer  "email_id"
+    t.integer  "list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "email_lists", ["email_id"], name: "index_email_lists_on_email_id"
+  add_index "email_lists", ["list_id"], name: "index_email_lists_on_list_id"
+
+  create_table "emails", force: true do |t|
+    t.integer  "user_id"
+    t.string   "subject"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "emails", ["user_id"], name: "index_emails_on_user_id"
 
   create_table "lists", force: true do |t|
     t.string   "name"
@@ -26,8 +46,8 @@ ActiveRecord::Schema.define(version: 20130924171700) do
     t.datetime "updated_at"
   end
 
-  add_index "subscriptions", ["list_id"], name: "index_subscriptions_on_list_id", using: :btree
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+  add_index "subscriptions", ["list_id"], name: "index_subscriptions_on_list_id"
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

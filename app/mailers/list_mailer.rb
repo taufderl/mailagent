@@ -5,7 +5,8 @@ class ListMailer < ActionMailer::Base
   # with the following lookup:
   #
   #   en.list_mailer.send_to_list.subject
-  #
+  
+  # just a test method 
   def send_to_list(lists)
     
     recipients = Set.new
@@ -16,5 +17,10 @@ class ListMailer < ActionMailer::Base
     end
     
     mail subject: 'Betreff', to: recipients.to_a
+  end
+  
+  def send_email(email)
+    #TODO 
+    
   end
 end
