@@ -87,4 +87,16 @@ Mailagent::Application.configure do
     :sender_address => %{"notifier" <notifier@taufderl.de>},
     :exception_recipients => %w{tadl@gmx.de}
   }
+  
+  #Mailer settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    address:              ENV["EMAIL_SERVER_ADRESS"],
+    port:                 587,
+    user_name:            ENV["EMAIL_USERNAME"],
+    password:             ENV["EMAIL_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true  
+  }
 end
