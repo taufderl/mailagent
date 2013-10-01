@@ -13,7 +13,7 @@ class IncomingMessageController < ApplicationController
         email.lists << list if received_mail.to.to_s.include?(list.name)
       end
       
-      email.subject = "[#{email.lists.order.join('|')}]" + received_mail.subject
+      email.subject = "[#{email.lists.sort.join('|')}]" + received_mail.subject
       
       #User has to be found and in the targetting lists, if not send back error message not
       if email.user && (email.list_ids - email.user.list_ids).empty?
