@@ -15,7 +15,7 @@ class IncomingMessageController < ApplicationController
       end
       
       #User has to be found and in the targetting lists, if not send back error message not
-      if user && (email.list_ids - user.list_ids).empty?
+      if email.user && (email.list_ids - email.user.list_ids).empty?
         #then the mail is valid
         if email.save
           #Send mail and be happy
