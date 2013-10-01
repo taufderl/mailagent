@@ -17,12 +17,17 @@ class ListMailer < ActionMailer::Base
                  "Subject: #{email.subject} \n" +
                  "To: #{get_recipients_from_lists(email.lists)} \n" +
                  "Content: \n #{email.content}"
-        mail subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
+        mail from: email.user.email, subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
         
     else
       @content = email.content  
-      mail subject: email.subject, to: get_recipients_from_lists(email.lists)
+      mail from: email.user.email, subject: email.subject, to: get_recipients_from_lists(email.lists)
     end
+  end
+  
+  def send_debug_email(content)
+     @content = content
+     mail subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
   end
   
   private
