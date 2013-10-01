@@ -1,5 +1,6 @@
 class ListMailer < ActionMailer::Base
   default from: "mailagent@taufderl.de"
+  #TODO: change to: to bcc: after debugging, set default to: 
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
