@@ -7,19 +7,20 @@ class IncomingMessageController < ApplicationController
       
       email = Email.new
       email.user = User.find_by_email(received_mail.from)
-      email.subject = received_mail.subject
-      email.content = received_mail.text_part.body.decoded
+      email.content = received_mail.text_part.body.decoded #TODO: not that easy!!!!
       
       List.all.each do |list|
         email.lists << list if received_mail.to.to_s.include?(list.name)
       end
+      
+      email.subject = "[#{email.lists.order.join('|')}]" + received_mail.subject
       
       #User has to be found and in the targetting lists, if not send back error message not
       if email.user && (email.list_ids - email.user.list_ids).empty?
         #then the mail is valid
         if email.save
           #Send mail and be happy
-          ListMailer.send_email(email)
+          ListMailer.send_email(email).deliver
         else
           #TODO: Send some email back that can show the error
           ListMailer.send_debug_email("NOT Successful!\n" + email.inspect).deliver
