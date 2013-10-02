@@ -1,6 +1,6 @@
 class ListMailer < ActionMailer::Base
   default from: "mailagent@taufderl.de"
-  #TODO: change to: to bcc: after debugging, set default to: 
+  default to: "" #TODO: set good to address 
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -21,7 +21,7 @@ class ListMailer < ActionMailer::Base
         mail from: email.user.email, subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
     else
       @content = email.content  
-      mail from: email.user.email, subject: email.subject, to: get_recipients_from_lists(email.lists)
+      mail from: email.user.email, subject: email.subject, bcc: get_recipients_from_lists(email.lists)
     end
   end
   
