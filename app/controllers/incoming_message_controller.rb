@@ -2,13 +2,27 @@ class IncomingMessageController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   def create
-      #TODO: document, verify and test
+      
       require 'mail'
       received_mail = Mail.new(params[:message])
       
       email = Email.new
       email.user = User.find_by_email(received_mail.from)
-      email.content = received_mail.text_part.body.decoded #TODO: not that easy!!!!
+      
+      #get email content
+      if received_email.multipart?
+        #TODO: parse multipart mail
+        email.content = received_mail.text_part.body.decoded
+      else
+        #TODO: parse single part
+        email.content = received_mail.parts[0].body.decoded
+      end
+      
+      #get attachments
+      if received_mail.has_attachements?
+        #TODO: pass attachments to next mail
+      end
+      
       
       #parse lists from incoming mail
       email.lists = parse_lists_from_subject(received_mail)
