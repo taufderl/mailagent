@@ -13,20 +13,21 @@ class IncomingMessageController < ApplicationController
       #test if user exists in DB
       if email.user == nil
         ErrorMailer.send_no_such_user_error(received_mail, email).deliver
+        render nothing: true
         return false
       end
       email.subject = received_mail.subject
       
-      #ListMailer.send_debug_email(email.errors.inspect).deliver
+      ListMailer.send_debug_email(email.errors.inspect).deliver
 
       # parse all parts of mail
-      if email.html_part
+      if received_mail.html_part
         email.html_part = received_mail.html_part.body.decoded
       end
-      if email.text_part
+      if received_mail.text_part
         email.text_part = received_mail.text_part.body.decoded
       end
-      if (email.html_part == nil && email.text_part == nil) #happens for GMX apparently
+      if (received_mail.html_part == nil && received_mail.text_part == nil) #happens for GMX apparently
         email.text_part = received_mail.body.decoded
       end
       
@@ -42,6 +43,7 @@ class IncomingMessageController < ApplicationController
       #User has to be found and in the targetting lists, if not send back error message not
       if (email.list_ids - email.user.list_ids).any?
         ErrorMailer.send_user_not_in_list_error(received_mail, email).deliver
+        render nothing: true
         return false
       end
       
@@ -55,7 +57,7 @@ class IncomingMessageController < ApplicationController
         ListMailer.send_debug_email("NOT Successful!\n" + email.inspect).deliver
       end
       
-      render :nothing => true
+      render nothing: true
   end
   
   private 
