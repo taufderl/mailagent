@@ -14,10 +14,10 @@ class IncomingMessageController < ApplicationController
       #get email content
       if received_email.multipart?
         #TODO: parse multipart mail
-        email.content = received_mail.text_part.body.decoded
+        email.content = received_email.text_part.body.decoded
       else
         #TODO: parse single part
-        email.content = received_mail.parts[0].body.decoded
+        email.content = received_email.parts[0].body.decoded
       end
       
       #get attachments
