@@ -4,7 +4,7 @@ class IncomingMessageController < ApplicationController
   def create
       received_mail = Mail.new(params[:message])
       
-      ListMailer.send_debug_email(params[:message]).deliver
+      #ListMailer.send_debug_email(params[:message]).deliver
       
       # create email object, find user and set subject
       email = Email.new
@@ -18,7 +18,7 @@ class IncomingMessageController < ApplicationController
       end
       email.subject = received_mail.subject
       
-      ListMailer.send_debug_email(email.errors.inspect).deliver
+      #ListMailer.send_debug_email(email.errors.inspect).deliver
 
       # parse all parts of mail
       if received_mail.html_part
