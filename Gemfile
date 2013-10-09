@@ -53,6 +53,6 @@ gem 'figaro'
 gem 'exception_notification'
 gem 'fcgi'
 
-
+gem 'mail'
 #todo
 #gem 'simple_form'

@@ -143,6 +143,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
+  mail
   mysql2
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)

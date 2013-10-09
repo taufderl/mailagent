@@ -18,7 +18,7 @@
       <tr>
         <td><%= email.user.email if email.user %></td>
         <td><%= link_to email.subject, email_path(email) %></td>
-        <td><%= email.content %></td>
+        <td><%= email.text_part %></td>
         <td><%= email.lists.sort.join(', ') %></td>
         <td><%=l email.created_at %></td>
         <td>

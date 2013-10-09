@@ -2,55 +2,59 @@ class IncomingMessageController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   def create
-      
-      require 'mail'
       received_mail = Mail.new(params[:message])
       
       ListMailer.send_debug_email(params[:message]).deliver
       
+      # create email object, find user and set subject
       email = Email.new
       email.user = User.find_by_email(received_mail.from)
       
-      #get email content
-      if received_email.multipart?
-        #TODO: parse multipart mail
-        email.content = received_email.text_part.body.decoded
-      else
-        #TODO: parse single part
-        email.content = received_email.parts[0].body.decoded
+      #test if user exists in DB
+      if email.user == nil
+        ErrorMailer.send_no_such_user_error(received_mail, email).deliver
+        return false
+      end
+      email.subject = received_mail.subject
+      
+      #ListMailer.send_debug_email(email.errors.inspect).deliver
+
+      # parse all parts of mail
+      if email.html_part
+        email.html_part = received_mail.html_part.body.decoded
+      end
+      if email.text_part
+        email.text_part = received_mail.text_part.body.decoded
+      end
+      if (email.html_part == nil && email.text_part == nil) #happens for GMX apparently
+        email.text_part = received_mail.body.decoded
       end
       
       #get attachments
-      if received_mail.has_attachements?
+      if received_mail.has_attachments?
         #TODO: pass attachments to next mail
       end
-      
       
       #parse lists from incoming mail
       email.lists = parse_lists_from_subject(received_mail)
       
-      email.subject = received_mail.subject
       
       #User has to be found and in the targetting lists, if not send back error message not
-      if email.user && (email.list_ids - email.user.list_ids).empty?
-        #then the mail is valid
-        if email.save
-          #Send mail and be happy
-          ListMailer.send_email(email).deliver
-          #TODO: if not delivered
-        else
-          #Strange thing happened, notify owner
-          ListMailer.send_debug_email("NOT Successful!\n" + email.inspect).deliver
-        end
-      #if the user could not be found or is not in all lists
-      else
-        # if the user could not be found or is not in all lists- send error message to the user
-        if email.user
-          ErrorMailer.send_user_not_in_list_error(received_mail, email).deliver
-        else
-          ErrorMailer.send_no_such_user_error(received_mail, email).deliver
-        end     
+      if (email.list_ids - email.user.list_ids).any?
+        ErrorMailer.send_user_not_in_list_error(received_mail, email).deliver
+        return false
       end
+      
+      #then the mail is valid
+      if email.save
+        #Send mail and be happy
+        ListMailer.send_email(email).deliver
+          #TODO: if not delivered
+      else
+        #Strange thing happened, notify owner
+        ListMailer.send_debug_email("NOT Successful!\n" + email.inspect).deliver
+      end
+      
       render :nothing => true
   end
   

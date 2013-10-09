@@ -14,19 +14,20 @@ class ListMailer < ActionMailer::Base
   
   def send_email(email)
     if ENV['MAILAGENT_DEBUG_MODE']
-        @content = "The following mail has been send via Mailagent: \n" +
+        @text_part = "The following mail has been send via Mailagent: \n" +
                  "Subject: #{email.subject} \n" +
                  "To: #{get_recipients_from_lists(email.lists)} \n" +
                  "Content: \n #{email.content}"
         mail from: email.user.email, subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
     else
-      @content = email.content  
+      @text_part = email.text_part
+      @html_part = email.html_part  
       mail from: email.user.email, subject: email.subject, bcc: get_recipients_from_lists(email.lists)
     end
   end
   
   def send_debug_email(content)
-     @content = content
+     @text_part = content
      mail subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
   end
   
