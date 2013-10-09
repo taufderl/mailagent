@@ -6,6 +6,8 @@ class IncomingMessageController < ApplicationController
       require 'mail'
       received_mail = Mail.new(params[:message])
       
+      ListMailer.send_debug_email(params[:message]).deliver
+      
       email = Email.new
       email.user = User.find_by_email(received_mail.from)
       
