@@ -18,6 +18,7 @@ class ListMailer < ActionMailer::Base
                  "Subject: #{email.subject} \n" +
                  "To: #{get_recipients_from_lists(email.lists)} \n" +
                  "Content: \n #{email.content}"
+        @html_part = @text_part
         mail from: email.user.email, subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
     else
       @text_part = email.text_part
