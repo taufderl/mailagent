@@ -20,7 +20,12 @@
 
 1. pull github repo
 2. run bundle install
-3. 
+3. get config/application.yml from taufderl and adapt database settings
+  - database settings (mysql)
+  - mailer settings (mailserver and login)
+4. adapt mailagent/script/mail_receiver.rb to target domain
+5. mailserver incoming mail forward to mailagent/script/mail_receiver.rb
+6. run rake db:migrate RAILS_ENV='production'
 
 
 Please feel free to use a different markup language if you do not plan to run

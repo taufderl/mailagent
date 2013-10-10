@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# This is needed to find gems installed with --user-install
+export HOME=/home/cjgbelm
+
+# Include our profile to get Ruby included in our PATH
+. $HOME/.bash_profile
+
+# This makes Rails/Rack think we're running under FastCGI. WTF?!
+export PHP_FCGI_CHILDREN=1
+
+# Get into the project directory and start the Rails server
+cd $HOME/mailagent
+exec bundle exec rails server -e production
