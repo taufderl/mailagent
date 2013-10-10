@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    #TODO: Filter leeren
+    @q = User.search(params[:q])
+    @users = @q.result(distinct: true)
   end
 
   # GET /users/1
@@ -60,6 +62,11 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+  
+  # GET /profile
+  def profile
+    
   end
 
   private

@@ -1,0 +1,67 @@
+de:
+  page:
+    title: 'Mailagent'
+  session:
+    login: 'Login'
+    email: 'E-Mail'
+    password: 'Passwort'
+  links:
+    new_user: 'Neuer Benutzer'
+    users: 'Benutzer anzeigen'
+    new_list: 'Neue Liste'
+    lists: 'Listen anzeigen'
+    emails: 'E-Mails'
+    new_email: 'Neue E-Mail'
+    profile: 'Profil'
+    
+    
+  helpers:
+    actions: "Aktionen"
+    links:
+      back: "Zurück"
+      cancel: "Abbrechen"
+      confirm: "Bist du sicher?"
+      destroy: "Löschen"
+      new: "Neu"
+      edit: "Bearbeiten"
+      save: 'Speichern'
+    titles:
+      edit: "%{model} bearbeiten"
+      save: "%{model} speichern"
+      new: "%{model} erstellen"
+      delete: "%{model} löschen"
+    filter: 'Filtern'
+    clear_filter: 'Leeren'
+      
+  date:
+    formats:
+      default: "%d.%m.%Y" 
+  time: 
+    formats:
+      default: "%d.%m.%Y %H:%M Uhr"
+      
+  all: '[alle]'
+  
+  list:
+    title: 'Listen'
+    show: "Empfänger von %{name}"
+    name: 'Name'
+    remove_user: 'Entfernen'
+  
+  user:
+    title: 'Benutzer'
+    first_name: 'Vorname'
+    name: 'Nachname'
+    full_name: 'Name'
+    email: 'E-Mail Adresse'
+    lists: 'Listen'
+    role: 'Rolle'
+    password: 'Passwort'
+    password_confirmation: 'Passwort bestätigen'
+  email:
+    title: 'E-Mails'
+    from: 'Absender'
+    subject: 'Betreff'
+    content: 'Inhalt'
+    lists: 'Listen'
+    sent_at: 'Zeit'

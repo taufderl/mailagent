@@ -4,7 +4,9 @@ class EmailsController < ApplicationController
   # GET /emails
   # GET /emails.json
   def index
-    @emails = Email.all
+    #TODO: Filter leeren
+    @q = Email.search(params[:q])
+    @emails = @q.result(distinct: true)
   end
 
   # GET /emails/1

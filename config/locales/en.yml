@@ -18,6 +18,13 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
+  all: 'alle'
+  filter: 'filter'
+  user:
+    title: 'User'
+    first_name: 'first name'
+    name: 'name'
+    email: 'email'
+    lists: 'lists'

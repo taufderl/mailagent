@@ -1,6 +1,6 @@
 class ListMailer < ActionMailer::Base
   default from: "mailagent@taufderl.de"
-  default to: "" #TODO: set good to address 
+  default to: "" #TODO: set suitable to address 
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

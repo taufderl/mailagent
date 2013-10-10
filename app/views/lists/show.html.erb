@@ -1,27 +1,39 @@
 <%- model_class = List -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= t("list.show", name: @list.name) %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @list.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:users) %>:</strong></dt>
-  <dd>
+<table class="table table-striped table-condensed table-hover span4">
+  <thead>
+  	<th><%= t('user.full_name')%></th>
+  	<th><%= t('user.email')%></th>
+  	<th></th>
+  </thead>
+  <tbody>
+  	
   	<% @list.users.each do |user| %>
-      <%= user.name %>
+  	  <tr>
+  	    <td><%= link_to user.full_name, user_path(user) %></td>
+  	    <td><%= link_to user.email, user_path(user) %></td>
+  	    <td>
+  	    	<%= link_to t('list.remove_user'), "#", class: 'btn btn-mini btn-danger' %>
+  	    </td>
+  	  </tr>
   	<%end %>
-  </dd>
+  </tbody>
+</table>
+<dl class="dl-horizontal">
+  	
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
+  <%= link_to t("helpers.links.back"),
               lists_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+  <%= link_to t("helpers.links.edit"),
               edit_list_path(@list), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <%= link_to t("helpers.links.destroy"),
               list_path(@list),
               :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
               :class => 'btn btn-danger' %>
 </div>

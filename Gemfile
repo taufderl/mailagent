@@ -54,5 +54,7 @@ gem 'exception_notification'
 gem 'fcgi'
 
 gem 'mail'
+gem 'ransack'
+
 #todo
 #gem 'simple_form'

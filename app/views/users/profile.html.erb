@@ -1,0 +1,18 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%= t('links.profile') %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= t('user.full_name') %>:</strong></dt>
+  <dd><%= @current_user.full_name %></dd>
+  <dt><strong><%= t('user.email') %>:</strong></dt>
+  <dd><%= @current_user.email %></dd>
+  <dt><strong><%= t('list.title') %>:</strong></dt>
+  <dd><%= @current_user.lists.join(', ') %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('helpers.links.edit'),
+              edit_user_path(@current_user), :class => 'btn' %>
+</div>

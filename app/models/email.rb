@@ -3,4 +3,9 @@ class Email < ActiveRecord::Base
   has_many :email_lists, :dependent => :destroy
   has_many :lists, :through => :email_lists
   
+  
+  def content
+    "#{text_part[0..30]}..." if text_part 
+  end
+  
 end

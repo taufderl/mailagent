@@ -9,9 +9,19 @@ class User < ActiveRecord::Base
   
   ROLES = ['admin', 'listener']
   
-  #TODO: delete first_name and use only name 
+  def full_name
+    "#{first_name} #{name}"
+  end
   
-  def roles
+  def name_with_email
+    "#{full_name} <#{email}>"
+  end 
+  
+  def name_with_initial
+    "#{first_name.first}. #{name}"
+  end 
+  
+  def self.roles
     ROLES
   end
   

@@ -1,52 +1,31 @@
 
-<div class="span8 well">
+<div class="offset2 span7 well">
   <ul class="nav nav-list">
 	<li class="lead">
-		Sie befinden sich auf der Startseite der Mailinglisten-Verwaltung der katholischen Kirchengemeinde Belm.
-	</li class="nav nav-side">
-	<li>	
-		Wenn Sie bereits ein Passwort besitzen, können Sie sich auf der linken Seite einloggen und ihre Abonnements verwalten. 
-	</li>
-	<li>	
-		Wollen Sie sich neu registrieren geben Sie ihre Email-Adresse auf der rechten Seite ein und folgen Sie den Anweisungen in der Email.  
+		Herzlich Willkommen auf der Mailinglisten-Verwaltung der katholischen Jugend Belm.
 	</li>
   </ul>
 
 </div>
         
-<div class="span4">
+<div class="offset4 span3">
     <%= form_tag do %>
       <fieldset>
-        <legend>Login</legend>
+        <legend><%= t('session.login') %></legend>
 
         <div>
-          <%= label_tag :email, 'Email:' %>
+          <%= label_tag :email, t('session.email') %>
           <%= text_field_tag :email, params[:email] %>
         </div>
         <div>
-          <%= label_tag :password, 'Password:' %>
+          <%= label_tag :password, t('session.password') %>
           <%= password_field_tag :password, params[:password] %>
         </div>
         <div>
        	  <%= hidden_field_tag :login %>
-          <%= submit_tag 'Login' %>
+          <%= submit_tag t('session.login'), class: 'btn btn-primary'%>
         </div>
       </fieldset>
     <% end %>
 </div>
 
-<div class="span4">
-    <%= form_tag do %>
-      <fieldset>
-        <legend>Sign up</legend>
-        <div>
-          <%= label_tag :email, 'Email:' %>
-          <%= text_field_tag :email, params[:email] %>
-        </div>
-        <div>
-        	<%= hidden_field_tag :signup %>
-          <%= submit_tag 'Sign up' %>
-        </div>
-      </fieldset>
-    <% end %>
-</div>
