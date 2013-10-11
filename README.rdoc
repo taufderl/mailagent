@@ -23,13 +23,13 @@
 3. get config/application.yml from taufderl and adapt database settings
   - database settings (mysql)
   - mailer settings (mailserver and login)
-4. adapt mailagent/script/mail_receiver.rb to target domain
-5. mailserver incoming mail forward to mailagent/script/mail_receiver.rb
-6. copy mailagent/script/mailagent into fcgi path and adapt it
-7. create database
-7. run rake db:migrate RAILS_ENV='production'
+4. create database that has been set up
+5. adapt mailagent/script/mail_receiver.rb to target domain
+6. mailserver incoming mail forward to mailagent/script/mail_receiver.rb
+7. copy mailagent/script/mailagent into fcgi path and adapt it
+8. run rake db:migrate RAILS_ENV='production'
+9. run rake assets:precompile and copy asset folder if necessary to public html folder
+10. run application
 
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+# Y
+## Z
