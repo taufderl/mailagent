@@ -1,3 +1,12 @@
+TODO:
+- html messages from gmx
+- list#show: remove user, add existing user
+- mail:to field verteiler address, recognize already sent mails
+- mail: reply field verteiler address
+- if empty send no lists error
+- list recognition only from [] and case insensitive
+
+
 == README
 
 * Ruby version
