@@ -4,8 +4,8 @@ startTime = Time.now
 
 input = "message=#{CGI.escape(STDIN.read)}"
 
-#filename = "/home/cjgbelm/mailagent/log/maildump_#{Time.now.to_i}"
-filename = "./maildump_#{Time.now.to_i}"
+#filename = "/home/cjgbelm/mailagent/log/maildump_#{Time.now.to_i}.log"
+filename = "./maildump_#{Time.now.to_i}.log"
 
 file = File.open filename, 'w'
 file.write input
