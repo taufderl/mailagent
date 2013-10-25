@@ -42,7 +42,7 @@ class IncomingMessageController < ApplicationController
       end
      
       # add cc TODO: change to bcc in production mode
-      received_mail.to = get_recipients_from_lists(email.lists)
+      received_mail.to = get_recipients_from_lists(lists)
       
       # store to database
       email = Email.new :user => user, :subject => subject, :content => content, :lists => lists, :mail_id => message_id
