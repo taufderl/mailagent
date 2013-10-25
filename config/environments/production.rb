@@ -96,4 +96,10 @@ Mailagent::Application.configure do
     authentication:       'plain',
     enable_starttls_auto: true  
   }
+  
+  # set default settings
+  Mail.defaults do
+    delivery_method :smtp, Mailagent::Application.config.action_mailer.smtp_settings
+  end
+  
 end
