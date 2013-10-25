@@ -5,9 +5,13 @@ class IncomingMessageController < ApplicationController
       received_mail = Mail.new(params[:message])
       
       # TODO: check for mail_id if already exists
-      message_id = received_mail.message_id 
-      
-      #ListMailer.send_debug_email(params[:message]).deliver
+      message_id = received_mail.message_id
+        
+      if Email.find_by_mail_id message_id
+        ListMailer.send_debug_email(reveived_mail.inspect, "Mail already in database").deliver
+        render nothing: true
+        return false
+      end
       
       # find user
       user = User.find_by_email(received_mail.from)
@@ -42,18 +46,16 @@ class IncomingMessageController < ApplicationController
       end
      
       # add cc TODO: change to bcc in production mode
-      received_mail.to = get_recipients_from_lists(lists)
+      received_mail.cc = get_recipients_from_lists(lists)
       
       # store to database
       email = Email.new :user => user, :subject => subject, :content => content, :lists => lists, :mail_id => message_id
-      # debug mail
-      ListMailer.send_debug_email(email.inspect).deliver
+      
       #then the mail is valid
       if email.save
         #Send mail and be happy
-        status = received_mail.deliver!
+        sent_mail = received_mail.deliver!
         
-        ListMailer.send_debug_email(status).deliver
         #TODO: if not delivered
       else
         #Strange thing happened, notify owner

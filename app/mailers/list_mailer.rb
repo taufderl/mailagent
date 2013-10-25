@@ -27,9 +27,10 @@ class ListMailer < ActionMailer::Base
     end
   end
   
-  def send_debug_email(content)
+  def send_debug_email(content, subject = '')
      @text_part = content
-     mail subject: "[Mailagent-debugger]", to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
+     subject = "[Mailagent-debugger] #{subject}"
+     mail subject: subject, to: ENV['MAILAGENT_DEBUG_MAIL_ADDRESS']
   end
   
   private
