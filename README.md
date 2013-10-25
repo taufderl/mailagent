@@ -6,11 +6,10 @@
 
 # TODO:
 
-
-
 - list#show: remove user, add existing user
 - if empty send no lists error
 - list recognition only from [] and case insensitive
+- ensure that incomingmessage is only available from same host
 
 ## To make it nicer
 - tooltips

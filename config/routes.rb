@@ -1,10 +1,9 @@
 Mailagent::Application.routes.draw do
   
   resources :emails
-
-  constraints(:ip => /127.0.0.1/) do
-    post "incoming_messages" => 'incoming_message#create'
-  end
+  
+  # TODO: limit this to local requests
+  post "incoming_messages" => 'incoming_message#create'
   
   #test mailer
   get 'test_mail' => 'test_mail#new'
