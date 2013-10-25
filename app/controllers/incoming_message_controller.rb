@@ -26,7 +26,7 @@ class IncomingMessageController < ApplicationController
       lists = parse_lists_from_subject(received_mail)
       
       #User has to be found and in the targeted lists, if not send back error message
-      if (email.list_ids - email.user.list_ids).any?
+      if (lists - user.lists).any?
         ErrorMailer.send_user_not_in_list_error(received_mail).deliver
         render nothing: true
         return false
