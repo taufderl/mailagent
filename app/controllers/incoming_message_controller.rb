@@ -4,11 +4,13 @@ class IncomingMessageController < ApplicationController
   def create
       received_mail = Mail.new(params[:message])
       
-      # TODO: check for mail_id if already exists
+      # retrieve mail_id
       message_id = received_mail.message_id
         
+      # and check if already exists
       if Email.find_by_mail_id message_id
-        ListMailer.send_debug_email(reveived_mail.inspect, "Mail already in database").deliver
+        #ListMailer.send_debug_email(received_mail.inspect, "Mail already in database").deliver
+        # then do nothing
         render nothing: true
         return false
       end
