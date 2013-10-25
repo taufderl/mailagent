@@ -7,7 +7,7 @@ class IncomingMessageController < ApplicationController
       # retrieve mail_id
       message_id = received_mail.message_id
         
-      # and check if already exists
+      # and check if already exists --> never handle the same mail again
       if Email.find_by_mail_id message_id
         #ListMailer.send_debug_email(received_mail.inspect, "Mail already in database").deliver
         # then do nothing
@@ -47,8 +47,9 @@ class IncomingMessageController < ApplicationController
         content = received_mail.body.decoded
       end
      
-      # add cc TODO: change to bcc in production mode
-      received_mail.cc = get_recipients_from_lists(lists)
+      # add recipients as bcc
+      received_mail.bcc = get_recipients_from_lists(lists)
+      received_mail.reply_to = ENV['MAILAGENT_ADDRESS']
       
       # store to database
       email = Email.new :user => user, :subject => subject, :content => content, :lists => lists, :mail_id => message_id

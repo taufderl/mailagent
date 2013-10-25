@@ -5,7 +5,6 @@
 <table class="table table-striped table-condensed table-bordered table-hover">
   <thead>
     <tr>
-      <th><%= t('email.mail_id') %></th>
       <th><%= t('email.from') %></th>
       <th><%= t('email.subject') %></th>
       <th><%= t('email.content') %></th>
@@ -15,7 +14,6 @@
     </tr>
     <tr class="search-row">
   	  <%= search_form_for @q, class: 'form-inline' do |f| %>
-  	    <th></th>
   		<th><%= f.text_field :user_email_cont, placeholder: t('user.email'), class: 'search-input' %></th>
   		<th><%= f.text_field :subject_cont, placeholder: t('email.subject'), class: 'search-input' %></th>
   		<th></th>
@@ -31,10 +29,9 @@
   <tbody>
     <% @emails.each do |email| %>
       <tr>
-      	<td><%= email.mail_id %></td>
         <td><%= email.user.name_with_email if email.user %></td>
         <td><%= link_to email.subject, email_path(email) %></td>
-        <td><%= email.content %></td>
+        <td><%= email.content_cutted %></td>
         <td><%= email.lists.sort.join(', ') %></td>
         <td><%=l email.created_at %></td>
         <td>

@@ -2,7 +2,9 @@ Mailagent::Application.routes.draw do
   
   resources :emails
 
-  post "incoming_messages" => 'incoming_message#create'
+  constraints(:ip => /127.0.0.1/) do
+    post "incoming_messages" => 'incoming_message#create'
+  end
   
   #test mailer
   get 'test_mail' => 'test_mail#new'

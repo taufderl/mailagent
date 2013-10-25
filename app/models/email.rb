@@ -4,8 +4,8 @@ class Email < ActiveRecord::Base
   has_many :lists, :through => :email_lists
   
   
-  def content
-    "#{text_part[0..30]}..." if text_part 
+  def content_cutted
+    "#{content[0..30]}..." if content 
   end
   
 end
