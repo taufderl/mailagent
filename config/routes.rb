@@ -1,10 +1,10 @@
 Mailagent::Application.routes.draw do
   
   resources :emails
+  #get 'emails' => 'emails#index'
   
-  # TODO: limit this to local requests
-   
-  post "incoming_messages" => 'incoming_message#create' #, :constraints => {:ip => /2001:1a50:11:0:5f:8f:acc2:104/}
+  # limit incoming mails to mailserver ip 
+  post "incoming_messages" => 'incoming_message#create', :constraints => {:ip => /2001:1a50:11:0:5f:8f:acc2:104/}
   
   #test mailer
   get 'test_mail' => 'test_mail#new'
@@ -21,6 +21,7 @@ Mailagent::Application.routes.draw do
 
   resources :users
   get 'profile' => 'users#profile'
+  get 'edit_profile' => 'users#edit_profile'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

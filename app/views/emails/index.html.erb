@@ -20,7 +20,7 @@
   		<th><%= f.collection_select :lists_name_eq, List.all, :name, :name , {include_blank: t(:all)}, {class: 'search-input'} %></th>
   		<th></th>
   		<th><%= f.submit t('helpers.filter'), class: "btn btn-primary" %>
-  			<%= f.submit t('helpers.clear_filter'), class: "btn btn-primary" %>
+  			<%= f.submit t('helpers.clear_filter'), name: :clear_search, class: "btn btn-primary" %>
   		</th>
       <% end %>
   	</tr>

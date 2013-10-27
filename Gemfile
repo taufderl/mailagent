@@ -56,5 +56,4 @@ gem 'fcgi'
 gem 'mail'
 gem 'ransack'
 
-#todo
-#gem 'simple_form'
+gem 'hirb'

@@ -1,8 +1,9 @@
 <%- model_class = User -%>
 <div class="page-header">
-  <h1><%= t('links.new_user') %></h1>
+  <h1>Profil bearbeiten</h1>
 </div>
-<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+
+<%= form_for @current_user, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :first_name, t('user.first_name'), :class => 'control-label' %>
     <div class="controls">
@@ -22,12 +23,18 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :role, t('user.role'), :class => 'control-label' %>
+    <%= f.label :password, t('user.new_password'), :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :role, User.roles, :to_s, :to_s ,default: 2 %>
+      <%= f.password_field :password, :class => 'text_field' %>
       <span>
-  		<%= t('user.role_legend') %>
-  	 </span>
+      	<%= t 'user.new_password_legend' %>
+      </span>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, t('user.password_confirmation'), :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -43,4 +50,5 @@
                 users_path, :class => 'btn' %>
   </div>
 <% end %>
+
 

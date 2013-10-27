@@ -17,7 +17,7 @@ file.close
 
 endTime = Time.now
 
-#logFile = File.open '/home/cjgbelm/mailagent/log/email.log', 'w'
+#logFile = File.open '/home/cjgbelm/mailagent/log/email.log', 'a'
 logFile = File.open 'email.log', 'a'
 logFile.write "#{startTime}. Parsing lasted #{endTime-startTime}\n"
 logFile.close

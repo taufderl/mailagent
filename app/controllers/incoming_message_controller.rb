@@ -29,7 +29,15 @@ class IncomingMessageController < ApplicationController
       subject = received_mail.subject
       
       # and analyze subject to find lists 
-      lists = parse_lists_from_subject(received_mail)
+      lists = parse_lists_from_subject(subject)
+      
+      
+      if lists.empty?
+        # TODO: Send error reply no list recognized
+        ErrorMailer.no_lists_recognized_error(received_mail).deliver
+        render nothing: true
+        return false
+      end
       
       #User has to be found and in the targeted lists, if not send back error message
       if (lists - user.lists).any?
@@ -98,10 +106,6 @@ class IncomingMessageController < ApplicationController
         email.text_part = received_mail.body.decoded
       end
       
-      #get attachments
-      if received_mail.has_attachments?
-        #TODO: pass attachments to next mail
-      end
       
       #parse lists from incoming mail
       email.lists = parse_lists_from_subject(received_mail)
@@ -118,7 +122,7 @@ class IncomingMessageController < ApplicationController
       if email.save
         #Send mail and be happy
         ListMailer.send_email(email).deliver
-          #TODO: if not delivered
+         
       else
         #Strange thing happened, notify owner
         ListMailer.send_debug_email("NOT Successful!\n" + email.inspect).deliver
@@ -129,19 +133,12 @@ class IncomingMessageController < ApplicationController
 
   
   private 
-  def parse_lists_from_addressee(received_mail)
-    lists = []
-    List.all.each do |list|
-        lists << list if received_mail.to.to_s.include?(list.name)
-    end
-    lists
-  end
-  
-  def parse_lists_from_subject(received_mail)
+ 
+  def parse_lists_from_subject(subject)
     lists = []
     List.all.each do |list|
         #TODO: solve with regex and only consider [] part
-        lists << list if received_mail.subject.to_s.include?(list.name)
+        lists << list if subject.to_s.include?(list.name)
     end
     lists
   end

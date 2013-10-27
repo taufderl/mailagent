@@ -26,18 +26,9 @@
     <%= f.label :role, t('user.role'), :class => 'control-label' %>
     <div class="controls">
       <%= f.collection_select :role, User.roles, :to_s, :to_s ,default: 2 %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :password, t('user.password'), :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :password_confirmation, t('user.password_confirmation'), :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password_confirmation, :class => 'text_field' %>
+      <span>
+      	<%= t 'user.role_legend'%>
+      	</span>
     </div>
   </div>
   <div class="control-group">

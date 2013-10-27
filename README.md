@@ -2,14 +2,16 @@
 
 - mail: reply field verteiler address
 - recipients as bcc
-- 
+- attachements work well
+- ensure that incomingmessage is only available from same host
+- if empty send no lists error
 
 # TODO:
 
-- list#show: remove user, add existing user
-- if empty send no lists error
+- user import
+- list#show: remove user, add existing use
 - list recognition only from [] and case insensitive
-- ensure that incomingmessage is only available from same host
+
 
 ## To make it nicer
 - tooltips

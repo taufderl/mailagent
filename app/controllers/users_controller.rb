@@ -5,8 +5,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    #TODO: Filter leeren
-    @q = User.search(params[:q])
+    # Filter leeren
+    if params[:clear_search]
+      params[:q] = nil
+    end
+    @q = User.includes(:lists).search(params[:q])
     @users = @q.result(distinct: true)
   end
 
@@ -22,15 +25,29 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if @user == @current_user
+      redirect_to edit_profile_path
+    end
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+     
+    # generate pw
+    pw = random_pw
+    @user.password = pw
+    @user.password_confirmation = pw
+    
     respond_to do |format|
       if @user.save
+        
+        if @user.admin?
+          # Send mail that contains password
+          UserMailer.notify_new_admin(@user, pw).deliver
+        end
+        
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
@@ -43,8 +60,24 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user.assign_attributes(user_params)
+    
+    # if role changed to admin
+    if @user.role_changed? && @user.admin?
+      changed_to_admin = true
+      pw = random_pw
+      @user.password = pw
+      @user.password_confirmation = pw
+    end
+    
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.save
+        
+        if changed_to_admin
+          # Send mail that contains password
+          UserMailer.notify_new_admin(@user, pw).deliver
+        end
+        
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -66,7 +99,11 @@ class UsersController < ApplicationController
   
   # GET /profile
   def profile
-    
+    # TODO: make sure @current_user is set
+  end
+  
+  def edit_profile
+    # TODO: make sure @current_user is set
   end
 
   private
@@ -79,4 +116,11 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :name, :email, :password, :password_confirmation, :role, :list_ids => [])
     end
+    
+    def random_pw 
+      chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+      newpass = ""
+      1.upto(8) { |i| newpass << chars[rand(chars.size-1)] }
+      return newpass
+  end
 end
