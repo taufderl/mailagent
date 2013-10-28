@@ -57,3 +57,7 @@ gem 'mail'
 gem 'ransack'
 
 gem 'hirb'
+
+gem 'simple_form'
+
+gem 'roo'

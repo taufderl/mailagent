@@ -107,20 +107,21 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :name, :email, :password, :password_confirmation, :role, :list_ids => [])
-    end
-    
-    def random_pw 
-      chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-      newpass = ""
-      1.upto(8) { |i| newpass << chars[rand(chars.size-1)] }
-      return newpass
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:first_name, :name, :email, :password, :password_confirmation, :role, :list_ids => [])
+  end
+  
+  def random_pw 
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    newpass = ""
+    1.upto(8) { |i| newpass << chars[rand(chars.size-1)] }
+    return newpass
   end
 end

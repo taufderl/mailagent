@@ -11,6 +11,8 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
+    @subscriptions = Subscription.includes(:user).where(list: @list)
+    
   end
 
   # GET /lists/new

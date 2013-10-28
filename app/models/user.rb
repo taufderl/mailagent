@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
-  has_secure_password
+  has_secure_password validations: false
   
   has_many :subscriptions, dependent: :destroy
   has_many :lists, :through => :subscriptions
   
   validates :first_name, :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}
+  validates_format_of :email, :with => /@/
   
   ROLES = ['admin', 'listener']
   
@@ -28,5 +29,5 @@ class User < ActiveRecord::Base
   def admin?
     role == 'admin'
   end
-  
+
 end

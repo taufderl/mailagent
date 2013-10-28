@@ -1,4 +1,5 @@
 class SessionController < ApplicationController
+  skip_authorization_check
   
   def new
     if current_user

@@ -3,3 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .admin-user { background: #AAAAAA}
+
+.checkbox_container {
+  display: block;
+  vertical-align: -2px;
+  margin: 5px;
+ }
+.checkbox_container input {
+  display: inline;
+ }
+.checkbox_container .collection_check_boxes{
+  display: inline;
+  margin-left: 3px;
+  vertical-align: -3px;
+ }

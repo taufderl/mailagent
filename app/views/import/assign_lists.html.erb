@@ -1,0 +1,55 @@
+<h1>Datenimport</h1>
+
+<legend>Importiere Abbonements von existierenden Benutzern zu existierenden Listen</legend>
+
+<div class="span10">
+	<dl>
+		<dt>
+		Bitte die folgende Tabelle genau prüfen.	
+		</dt>
+		<li>Einträge mit Fehlermeldung werden beim Import ignoriert.</li>
+		 
+		<li>Fehler müssen in der Datei behoben werden und diese muss dann neu hochgeladen werden.</li>
+	</dl>
+	
+	<table class="table table-condensed table-bordered"> 
+		<thead>
+			<tr>
+				<th></th>
+				<th><%= t 'user.email'%></th>
+				<th><%= t 'list.name'%></th>
+				<th></th>
+			</tr>
+		</thead> 
+	
+		<tbody>  
+		<% @subscriptions.each_with_index do |sub, i| %>
+			<% if sub.valid? %>
+			<tr>
+			<% else %>
+			<tr class="error">
+			<% end %>
+				<td><%= i %></td>
+				<td><%= sub.user.email if sub.user %></td>
+				<td><%= sub.list.name if sub.list %></td>
+				<td>
+					<% if (!sub.valid?) %>
+						<%sub.errors.messages.each do |attr, m|%>
+							<%= "#{attr}: " %>
+							<%= m.join(' und ')%>
+						<% end %>
+					<% end %>
+				</td>
+			</tr>      
+		<% end %>
+		</tbody>
+	
+	</table>
+</div>
+<div class="span12">
+	<%= form_tag() do %>
+	  	<%= hidden_field_tag :subscriptions, @subscriptions.to_json %>
+	  	<%= submit_tag "Die Tabelle ist korrekt und die Benutzer sollen eingespielt werden", name: 'confirm', class: 'btn btn-primary'  %>
+		<%= submit_tag "Abbrechen", name: 'fsdf', class: 'btn btn-alert'  %>
+	<% end %>
+</div>

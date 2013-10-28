@@ -1,0 +1,62 @@
+<h1>Datenimport</h1>
+
+<div>
+	<legend>Importiere <b>neue</b> Benutzer</legend>
+	<ul>
+		<li>Nur für neue Benutzer die noch nicht in der Datenbank sind</li>
+		<li>Ihnen wird hiermit keine Liste zugewiesen</li>
+		<li>Bereits existierende Benutzer aus der Datei werden ignoriert</li>
+	</ul>
+		
+	<div>
+		<%= form_tag({action: :new_users}, multipart: true) do %>
+			<%= file_field_tag :file %>
+			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
+		<% end %>
+	</div>
+</div>
+
+<div>
+	<legend>Importiere Abbonements von existierenden Benutzern zu existierenden Listen</legend>
+	<ul>
+		<li>...TODO</li>
+
+	</ul>
+	<div>
+		<%= form_tag({action: :assign_lists}, multipart: true) do %>
+    		<%= file_field_tag :file %>
+			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
+		<% end %>
+	</div>
+      
+</div>
+
+<div>
+	<legend>Importiere <b>neue</b> Benutzer in bestehende Liste</legend>
+	<ul>
+		<li>...TODO</li>
+	</ul>
+	<div>
+		<%= form_tag({action: :upload}, multipart: true) do %>
+    		<%= collection_select nil, :list_id, List.all, :id, :name, prompt: true  %>
+			<%= file_field_tag :file %>
+			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
+		<% end %>
+	</div>
+      
+
+</div>
+
+<div>
+	<legend>Erstelle <b>neue</b> Liste und weise existierende Benutzer zu</legend>
+	<ul>
+		<li>...TODO</li>
+	</ul>
+	<div>
+		<%= form_tag({action: :new_list}, multipart: true) do %>
+			<%= collection_select nil, :list_id, List.all, :id, :name, prompt: true  %>
+			<%= file_field_tag :file %>
+			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
+		<% end %>
+	</div>
+</div>

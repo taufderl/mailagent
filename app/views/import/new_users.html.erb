@@ -1,0 +1,58 @@
+<h1>Datenimport</h1>
+
+<legend>Importiere neue Benutzer</b></legend>
+
+
+<div class="span10">
+	<dl>
+		<dt>
+		Bitte die folgende Tabelle genau prüfen.	
+		</dt>
+		<li>Einträge mit Fehlermeldung werden beim Import ignoriert.</li>
+		 
+		<li>Fehler müssen in der Datei behoben werden und diese muss dann neu hochgeladen werden.</li>
+	</dl>
+	
+	<table class="table table-condensed table-bordered"> 
+		<thead>
+			<tr>
+				<th></th>
+				<th><%= t 'user.first_name'%></th>
+				<th><%= t 'user.name'%></th>
+				<th><%= t 'user.email'%></th>
+				<th></th>
+			</tr>
+		</thead> 
+	
+		<tbody>  
+		<% @users.each_with_index do |user, i| %>
+			<% if user.valid? %>
+			<tr>
+			<% else %>
+			<tr class="error">
+			<% end %>
+				<td><%= i %></td>
+				<td><%= user.first_name %></td>
+				<td><%= user.name %></td>
+				<td><%= user.email %></td>
+				<td>
+					<% if (!user.valid?) %>
+						<%user.errors.messages.each do |attr, m|%>
+							<%= "#{attr}: " %>
+							<%= m.join(' und ')%>
+						<% end %>
+					<% end %>
+				</td>
+			</tr>      
+		<% end %>
+		</tbody>
+	
+	</table>
+</div>
+<div class="span12">
+	<%= form_tag() do %>
+	  	<%= hidden_field_tag :users, @users.to_json %>
+	  	<%= submit_tag "Die Tabelle ist korrekt und die Benutzer sollen eingespielt werden", name: 'confirm', class: 'btn btn-primary'  %>
+		<%= submit_tag "Abbrechen", name: 'fsdf', class: 'btn btn-alert'  %>
+	<% end %>
+</div>

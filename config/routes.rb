@@ -1,5 +1,12 @@
 Mailagent::Application.routes.draw do
   
+  get "import" => 'import#index'
+  post "import/upload" => 'import#upload'
+  post "import/new_users" => 'import#new_users'
+  post "import/assign_lists" => 'import#assign_lists'
+  post "import/new_list" => 'import#new_list'
+  
+  get "dashboard" => 'dashboard#index'
   resources :emails
   #get 'emails' => 'emails#index'
   
@@ -14,8 +21,8 @@ Mailagent::Application.routes.draw do
   post 'start' => 'session#create'
   delete 'logout' => 'session#destroy'
   
-  #resources :subscriptions
-  get 'subscriptions' => 'subscriptions#index'
+  resources :subscriptions
+  #get 'subscriptions' => 'subscriptions#index'
 
   resources :lists
 
