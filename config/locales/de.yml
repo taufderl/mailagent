@@ -49,6 +49,7 @@ de:
     show: "Empfänger von %{name}"
     name: 'Name'
     remove_user: 'Entfernen'
+    count: 'Mitglieder'
   
   user:
     title: 'Benutzer'
@@ -99,4 +100,12 @@ de:
               invalid: 'ungültig'
             user:
               blank: 'existiert nicht'
+              
+  error_mailer:
+    no_such_user: 
+      subject: 'Absender-Adresse nicht registriert'
+    user_not_in_list:
+      subject: 'Absender-Adresse nicht in Verteiler'
+    no_lists_recognized:
+      subject: 'Keine Listen als Empfänger definiert'
               

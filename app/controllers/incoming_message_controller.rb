@@ -10,7 +10,6 @@ class IncomingMessageController < ApplicationController
         
       # and check if already exists --> never handle the same mail again
       if Email.find_by_mail_id message_id
-        #ListMailer.send_debug_email(received_mail.inspect, "Mail already in database").deliver
         # then do nothing
         render nothing: true
         return false
@@ -34,7 +33,7 @@ class IncomingMessageController < ApplicationController
       
       
       if lists.empty?
-        # TODO: Send error reply no list recognized
+        # Send error reply when no list recognised
         ErrorMailer.no_lists_recognized_error(received_mail).deliver
         render nothing: true
         return false
@@ -71,79 +70,36 @@ class IncomingMessageController < ApplicationController
         #TODO: if not delivered
       else
         #Strange thing happened, notify owner
-        ListMailer.send_debug_email("NOT Successful!\n" + email.inspect).deliver
+        DebugMailer.send_email("NOT Successful!\n" + email.inspect, "ERROR while saving email, not delivered").deliver
       end
       
       render nothing: true
   end
-  
-  def create_safe
-      received_mail = Mail.new(params[:message])
-      
-      #ListMailer.send_debug_email(params[:message]).deliver
-      
-      # create email object, find user and set subject
-      email = Email.new
-      email.user = User.find_by_email(received_mail.from)
-      
-      #test if user exists in DB
-      if email.user == nil
-        ErrorMailer.send_no_such_user_error(received_mail, email).deliver
-        render nothing: true
-        return false
-      end
-      email.subject = received_mail.subject
-      
-      #ListMailer.send_debug_email(email.errors.inspect).deliver
-
-      # parse all parts of mail
-      if received_mail.html_part
-        email.html_part = received_mail.html_part.body.decoded
-      end
-      if received_mail.text_part
-        email.text_part = received_mail.text_part.body.decoded
-      end
-      if (received_mail.html_part == nil && received_mail.text_part == nil) #happens for GMX apparently
-        email.text_part = received_mail.body.decoded
-      end
-      
-      
-      #parse lists from incoming mail
-      email.lists = parse_lists_from_subject(received_mail)
-      
-      
-      #User has to be found and in the targetting lists, if not send back error message not
-      if (email.list_ids - email.user.list_ids).any?
-        ErrorMailer.send_user_not_in_list_error(received_mail, email).deliver
-        render nothing: true
-        return false
-      end
-      
-      #then the mail is valid
-      if email.save
-        #Send mail and be happy
-        ListMailer.send_email(email).deliver
-         
-      else
-        #Strange thing happened, notify owner
-        ListMailer.send_debug_email("NOT Successful!\n" + email.inspect).deliver
-      end
-      
-      render nothing: true
-  end
-
   
   private 
  
+  # returns an array of the lists that are recognized in the subject of an email
   def parse_lists_from_subject(subject)
+    # extract part between '[...]'
+    subject.to_s.match(/\[(.*)\]/)
+    if $1
+      # and create array by valid separators: \s , | 
+      subject_array = $1.split(/[\s,|]/)
+    else
+      return []
+    end
     lists = []
     List.all.each do |list|
-        #TODO: solve with regex and only consider [] part
-        lists << list if subject.to_s.include?(list.name)
+      subject_array.each do |pot_list| 
+        if pot_list.casecmp(list) == 0
+          lists << list
+        end
+      end
     end
-    lists
+    return lists
   end
   
+  # returns an array of unique users that belong to the array of lists 
   def get_recipients_from_lists(lists)
     recipients = Set.new
     lists.each do |list|

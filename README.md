@@ -1,22 +1,3 @@
-# just done
-
-- mail: reply field verteiler address
-- recipients as bcc
-- attachements work well
-- ensure that incomingmessage is only available from same host
-- if empty send no lists error
-
-# TODO:
-
-- user import
-- list#show: remove user, add existing use
-- list recognition only from [] and case insensitive
-
-
-## To make it nicer
-- tooltips
-
-
 # README
 
 * Ruby version
@@ -35,7 +16,7 @@
 
 * Deployment instructions
 
-	1. pull github repo
+	1. pull github repository
 	2. run bundle install
 	3. get config/application.yml from taufderl and adapt database settings
  		 - database settings (mysql)
@@ -47,4 +28,34 @@
 	8. run rake db:migrate RAILS_ENV='production'
 	9. run rake assets:precompile and copy asset folder if necessary to public html folder
 	10. run application
+
+# just done
+
+- mail: reply field verteiler address
+- recipients as bcc
+- attachements work well
+- ensure that incomingmessage is only available from same host
+- if empty send no lists error
+- user import
+- list#show: remove user,
+- add no of users to lists overview
+- Gemfile add versions and divide by environments!!
+- list recognition only from [] and case insensitive separated by , | \s
+
+# TODO:
+
+## important functionality
+
+- finish import functionality
+- remove old lists mailer
+- dashboard
+
+## To make it nicer
+- tooltips
+- nice alerts and notices based on localization file
+
+## Verify
+- all translations are there
+
+
 

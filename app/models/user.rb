@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   validates :first_name, :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}
   validates_format_of :email, :with => /@/
+  validates :password,
+      :length => { :minimum => 8, :if => :validate_password? },
+      :confirmation => { :if => :validate_password? }
   
   ROLES = ['admin', 'listener']
   
@@ -28,6 +31,12 @@ class User < ActiveRecord::Base
   
   def admin?
     role == 'admin'
+  end
+  
+  private
+  
+  def validate_password?
+    password.present? || password_confirmation.present?
   end
 
 end

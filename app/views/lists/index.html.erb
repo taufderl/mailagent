@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= t('list.name') %></th>
+      <th><%= t('list.count')%></th>
       <th><%= t('helpers.actions') %></th>
     </tr>
   </thead>
@@ -13,6 +14,7 @@
     <% @lists.each do |list| %>
       <tr>
         <td><%= link_to list.name, list_path(list) %></td>
+        <td><%= list.users.count %></td>
         <td>
           <%= link_to t("helpers.links.edit"),
                       edit_list_path(list), :class => 'btn btn-mini' %>

@@ -80,9 +80,9 @@ Mailagent::Application.configure do
 
   Mailagent::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
-    :email_prefix => "[Mailagent] ",
-    :sender_address => %{"notifier" <notifier@taufderl.de>},
-    :exception_recipients => %w{tadl@gmx.de}
+    :email_prefix => "[Mailagent-Notification] ",
+    :sender_address => ENV["MAILAGENT_ADDRESS"],
+    :exception_recipients => %w{ENV["MAILAGENT_ADMIN_MAIL_ADDRESS"]}
   }
   
   #Mailer settings

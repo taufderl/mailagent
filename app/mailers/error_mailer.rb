@@ -4,17 +4,17 @@ class ErrorMailer < ActionMailer::Base
   
   def send_no_such_user_error(received_mail)
     @received_mail = received_mail
-    mail to: received_mail.from, subject: 'Absender-Adresse nicht registriert'
+    mail to: received_mail.from, subject: t('error_mailer.no_such_user.subject')
   end
   
   def send_user_not_in_list_error(received_mail)
     @received_mail = received_mail
-    mail to: received_mail.from, subject: 'Absender-Adresse nicht in Verteiler'
+    mail to: received_mail.from, subject: t('error_mailer.user_not_in_list.subject')
   end
   
   def no_lists_recognized_error(received_mail)
     @received_mail = received_mail
-    mail to: received_mail.from, subject: 'Keine Listen als Empfänger definiert'
+    mail to: received_mail.from, subject: t('error_mailer.no_lists_recognized.subject')
   end
   
 end

@@ -11,4 +11,4 @@ rescue Exception => e
   puts e.message[0..100] 
 end
 
-curl -X POST -d @escaped_maildump http://localhost:3000/incoming_messages
+
