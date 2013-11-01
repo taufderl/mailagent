@@ -50,6 +50,7 @@ de:
     name: 'Name'
     remove_user: 'Entfernen'
     count: 'Mitglieder'
+    is_empty: 'Diese Liste ist leer'
   
   user:
     title: 'Benutzer'

@@ -70,6 +70,8 @@
 - dashboard
 - warn when admin created
 - remove mail content
+- implement authentication with dem device to implement auto end session and stuff
+- xls export für liste
 
 ## To make it nicer
 - tooltips

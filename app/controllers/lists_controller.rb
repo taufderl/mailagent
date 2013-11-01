@@ -12,7 +12,21 @@ class ListsController < ApplicationController
   # GET /lists/1.json
   def show
     @subscriptions = Subscription.includes(:user).where(list: @list)
-    
+    respond_to do |format|
+      
+      format.csv do 
+        data = CSV.generate do |csv|
+          # TODO: make more generic
+          csv << ['Vorname', 'Nachname', 'Email', 'Liste']
+          @subscriptions.each do |subscr|
+            csv << [subscr.user.first_name, subscr.user.name, subscr.user.email, subscr.list.name]
+          end
+        end
+        send_data data
+      end
+      
+      format.html
+    end
   end
 
   # GET /lists/new
@@ -62,6 +76,13 @@ class ListsController < ApplicationController
       format.html { redirect_to lists_url }
       format.json { head :no_content }
     end
+  end
+  
+  def export
+    @subscriptions = Subscription.includes(:user).where(list: @list)
+    
+    
+    
   end
 
   private
