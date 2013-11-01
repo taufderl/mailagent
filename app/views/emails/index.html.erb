@@ -7,7 +7,6 @@
     <tr>
       <th><%= t('email.from') %></th>
       <th><%= t('email.subject') %></th>
-      <th><%= t('email.content') %></th>
       <th><%= t('email.lists') %></th>
       <th><%= t('email.sent_at') %></th>
       <th><%= t('helpers.actions') %></th>
@@ -16,7 +15,6 @@
   	  <%= search_form_for @q, class: 'form-inline' do |f| %>
   		<th><%= f.text_field :user_email_cont, placeholder: t('user.email'), class: 'search-input' %></th>
   		<th><%= f.text_field :subject_cont, placeholder: t('email.subject'), class: 'search-input' %></th>
-  		<th></th>
   		<th><%= f.collection_select :lists_name_eq, List.all, :name, :name , {include_blank: t(:all)}, {class: 'search-input'} %></th>
   		<th></th>
   		<th><%= f.submit t('helpers.filter'), class: "btn btn-primary" %>
@@ -30,8 +28,7 @@
     <% @emails.each do |email| %>
       <tr>
         <td><%= email.user.name_with_email if email.user %></td>
-        <td><%= link_to email.subject, email_path(email) %></td>
-        <td><%= email.content_cutted %></td>
+        <td><%= email.subject %></td>
         <td><%= email.lists.sort.join(', ') %></td>
         <td><%=l email.created_at %></td>
         <td>

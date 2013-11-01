@@ -66,8 +66,10 @@
 
 ## important functionality
 
-- finish import functionality
+- finish import functionality, and explain more detailed
 - dashboard
+- warn when admin created
+- remove mail content
 
 ## To make it nicer
 - tooltips

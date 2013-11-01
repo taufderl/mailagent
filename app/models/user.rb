@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validates :password,
       :length => { :minimum => 8, :if => :validate_password? },
       :confirmation => { :if => :validate_password? }
+      
+  after_initialize :init
   
   ROLES = ['admin', 'listener']
   
@@ -34,6 +36,10 @@ class User < ActiveRecord::Base
   end
   
   private
+  
+  def init
+    self.role ||= 'listener'
+  end
   
   def validate_password?
     password.present? || password_confirmation.present?
