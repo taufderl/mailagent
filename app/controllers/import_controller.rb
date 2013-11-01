@@ -6,7 +6,7 @@ class ImportController < ApplicationController
     authorize! :import, :index
   end
   
-  # import plain users without assigning a list to them
+  # import new users without assigning a list to them
   def new_users 
     authorize! :import, :new_users
     
@@ -98,59 +98,11 @@ class ImportController < ApplicationController
   end # end assign_lists
 
 
-  def upload
-    authorize! :import, :upload
+  # Generic import, creates on behalf users
+  # TODO: implement generic import 
+  def generic_import
     
-    if params[:upload] ## file upload -> do validation
-      if !(file = params[:file])
-        flash.now[:alert] = "Bitte wähle eine Datei."
-        render :index
-        return
-      end
-      
-      
-      if !(@list = List.find_by_id(params[:list_id]))
-        flash.now[:alert] = "Bitte wähle eine Liste."
-        render :index
-        return
-      end
-      
-      begin
-        @sheet = open_spreadsheet file
-      rescue Exception => e
-        flash.now[:alert] = e.message
-        render :index
-        return
-      end
-      
-      @users = []
-      
-      @sheet.each do |line|
-        u = User.new(first_name: line[0], name: line[1], email: line[2])
-        @users << u
-      end
-    elsif params[:confirm]
-      
-      @list = List.find(params[:list_id]) 
-      
-      users_params = JSON.parse params[:users]
-      @users = []
-      
-      users_params.each do |user_params|
-        u = User.new user_params
-        @users << u
-        @user.list = @list
-        u.save
-      end 
-    end
-
   end
-  
-  
-  def new_list
-    # TODO  
-  end
-  
   
   private
   

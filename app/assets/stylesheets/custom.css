@@ -14,7 +14,7 @@ table th .search-input {
   width: 95%;
 }
 
-footer p {
+.copyright {
 	padding: 2px 3px 2px 3px;
 	background: #BBBBBB;
 	opacity: .8;

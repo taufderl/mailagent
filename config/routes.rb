@@ -1,10 +1,9 @@
 Mailagent::Application.routes.draw do
   
   get "import" => 'import#index'
-  post "import/upload" => 'import#upload'
   post "import/new_users" => 'import#new_users'
   post "import/assign_lists" => 'import#assign_lists'
-  post "import/new_list" => 'import#new_list'
+  post "import/generic_import" => 'import#generic_import'
   
   get "dashboard" => 'dashboard#index'
   resources :emails

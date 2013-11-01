@@ -1,62 +1,61 @@
 <h1>Datenimport</h1>
 
-<div>
+<div class="row-fluid">
 	<legend>Importiere <b>neue</b> Benutzer</legend>
-	<ul>
-		<li>Nur für neue Benutzer die noch nicht in der Datenbank sind</li>
-		<li>Ihnen wird hiermit keine Liste zugewiesen</li>
-		<li>Bereits existierende Benutzer aus der Datei werden ignoriert</li>
-	</ul>
+	<div class=span8>
 		
-	<div>
+		<ul>
+			<li>Nur für neue Benutzer die noch nicht in der Datenbank sind.</li>
+			<li>Es wird hier keine Liste zugewiesen.</li>
+			<li>Bereits existierende Benutzer aus der Datei werden ignoriert.</li>
+		</ul>
+		
 		<%= form_tag({action: :new_users}, multipart: true) do %>
 			<%= file_field_tag :file %>
 			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
 		<% end %>
 	</div>
+	<div class="span3">
+		<%= image_tag 'import_new_users.png' %>
+	</div>
 </div>
+
 
 <div>
 	<legend>Importiere Abbonements von existierenden Benutzern zu existierenden Listen</legend>
-	<ul>
-		<li>...TODO</li>
-
-	</ul>
-	<div>
+	<div class="span8">
+		<ul>
+			<li>Sowohl alle Benutzer als auch alle Listen müssen bereits in der Datenbank vorhanden sein.</li>
+			<li>Für jeden Benutzer für den dieses Abonnement noch nicht eingetragen ist wird es angelegt.</li>
+		</ul>
+	
 		<%= form_tag({action: :assign_lists}, multipart: true) do %>
     		<%= file_field_tag :file %>
 			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
 		<% end %>
 	</div>
+	<div class="span3">
+		<%= image_tag 'import_assign_lists.png' %>
+	</div>
       
 </div>
 
+<h2>ACHTUNG: Der folgende Import funktioniert noch nicht und sollte nur auf Anweisung benutzt werden.</h2>
 <div>
-	<legend>Importiere <b>neue</b> Benutzer in bestehende Liste</legend>
+	<legend>Importiere Benutzerdaten in bestehende Listen</legend>
+	<div class="span7">
 	<ul>
-		<li>...TODO</li>
+		<li>Benutzer werden, sofern nicht vorhanden, automatisch erstellt.</li>
+		<li>Die zugeordnete Liste wird jedem Benutzer automatisch zugewiesen.</li>
+		<li>Listen müssen vorher erstellt werden.</li>
 	</ul>
-	<div>
-		<%= form_tag({action: :upload}, multipart: true) do %>
-    		<%= collection_select nil, :list_id, List.all, :id, :name, prompt: true  %>
+	
+		<%= form_tag({action: :generic_import}, multipart: true) do %>
 			<%= file_field_tag :file %>
 			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
 		<% end %>
 	</div>
-      
-
-</div>
-
-<div>
-	<legend>Erstelle <b>neue</b> Liste und weise existierende Benutzer zu</legend>
-	<ul>
-		<li>...TODO</li>
-	</ul>
-	<div>
-		<%= form_tag({action: :new_list}, multipart: true) do %>
-			<%= collection_select nil, :list_id, List.all, :id, :name, prompt: true  %>
-			<%= file_field_tag :file %>
-			<%= submit_tag t('import.upload'), name: 'upload', class: 'btn btn-small btn-primary'%>
-		<% end %>
-	</div>
+      	<div class="span4">
+      		<%= image_tag 'generic_import.png' %>
+      	</div>
 </div>

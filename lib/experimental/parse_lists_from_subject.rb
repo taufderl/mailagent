@@ -26,7 +26,7 @@ def parse_lists_from_subject(subject)
   return lists
 end
   
-s = "[CJG15|CJG12 CJG,messdiener] Kindergruppen"
+s = "[CJG15| CJG12, CJG,messdiener] Kindergruppen"
 lists = parse_lists_from_subject(s)
 
 lists.each do |l|
