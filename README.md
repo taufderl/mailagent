@@ -68,10 +68,10 @@
 
 - finish import functionality, and explain more detailed
 - dashboard
-- warn when admin created
+- warn when admin created that email and password is send out
 - remove mail content
 - implement authentication with dem device to implement auto end session and stuff
-- xls export für liste
+- xls export für liste improve: filename, what else?
 
 ## To make it nicer
 - tooltips
