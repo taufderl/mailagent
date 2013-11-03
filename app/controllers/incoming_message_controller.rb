@@ -5,6 +5,9 @@ class IncomingMessageController < ApplicationController
   def create
       received_mail = Mail.new(params[:message])
       
+      DebugMailer.send_email(params[:message], "params").deliver
+      DebugMailer.send_email(received_mail.inspect, "inspect").deliver
+      
       # retrieve mail_id
       message_id = received_mail.message_id
         
