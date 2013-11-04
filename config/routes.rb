@@ -9,8 +9,13 @@ Mailagent::Application.routes.draw do
   resources :emails
   #get 'emails' => 'emails#index'
   
-  # limit incoming mails to mailserver ip 
-  post "incoming_messages" => 'incoming_message#create', :constraints => {:ip => /2001:1a50:11:0:5f:8f:acc2:104/}
+  # limit incoming mails to mailserver ip
+  if Rails.env.production?
+    post "incoming_messages" => 'incoming_message#create', :constraints => {:ip => /2001:1a50:11:0:5f:8f:acc2:104/}
+    else
+    post "incoming_messages" => 'incoming_message#create'
+  end 
+  
   
   #test mailer
   get 'test_mail' => 'test_mail#new'
