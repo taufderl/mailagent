@@ -5,8 +5,6 @@ class IncomingMessageController < ApplicationController
   def create
       received_mail = Mail.new(params[:message])
       
-      DebugMailer.send_email(params[:message], "params").deliver
-      
       # retrieve mail_id
       message_id = received_mail.message_id
         
@@ -16,6 +14,8 @@ class IncomingMessageController < ApplicationController
         render nothing: true
         return false
       end
+      
+      DebugMailer.send_email(params[:message], "params").deliver
       
       # find user
       user = User.find_by_email(received_mail.from)
