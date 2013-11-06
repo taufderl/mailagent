@@ -64,6 +64,9 @@
 
 # TODO:
 
+- exclude message param from log
+- set mail status OK when received a second time!!
+
 ## important functionality
 
 - finish import functionality, and explain more detailed

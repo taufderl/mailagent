@@ -64,7 +64,7 @@ group :production do
   gem 'exception_notification', '~> 4.0.1'
   
   # fcgi for fcgi script running
-  gem 'fcgi', '~> 0.9.2'
+  gem 'passenger', '~> 4.0.23'
 end
 
 # mail for mail pasring ability
