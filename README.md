@@ -66,6 +66,7 @@
 
 - exclude message param from log
 - set mail status OK when received a second time!!
+- redirect to dashboard
 
 ## important functionality
 
