@@ -61,28 +61,33 @@
 - Gemfile add versions and divide by environments!!
 - list recognition only from [] and case insensitive separated by , | \s
 - remove old lists mailer
+- redirect to dashboard
+- xls export für liste improve: filename
+- removed mail content completely
+- favicon
+- bug melden funktion
+
+# VERIFY THAT IT WORKS
+
+- exclude message param from log
+- set mail status pending and then OK when received a second time!!
+- all translations are there
+- dashboard
 
 # TODO:
 
-- exclude message param from log
-- set mail status OK when received a second time!!
-- redirect to dashboard
-
-## important functionality
+- render message for curl and save this to curl log
 
 - finish import functionality, and explain more detailed
-- dashboard
 - warn when admin created that email and password is send out
-- remove mail content
-- implement authentication with dem device to implement auto end session and stuff
-- xls export für liste improve: filename, what else?
+- implement authentication with gem device to implement auto end session and stuff
+- migrate to bootstrap 3.0
 
 ## To make it nicer
 - tooltips
-- nice alerts and notices based on localization file
+- new menu bar
+- dashboard highcharts
 
-## Verify
-- all translations are there
 
 
 

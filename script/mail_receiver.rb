@@ -12,7 +12,8 @@ file.write input
 file.close
 
 # note the backticks here execute the command
-`curl -X POST -d @"#{filename}" http://mailagent.cjg-belm.de/incoming_messages`
+`curl -X POST -d @#{filename} http://localhost:3333/incoming_messages`
+#`curl -X POST -d @"#{filename}" http://mailagent.cjg-belm.de/incoming_messages`
 #`curl -X POST -d @#{filename} http://localhost:3000/incoming_messages`
 
 endTime = Time.now

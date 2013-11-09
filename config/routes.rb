@@ -1,5 +1,8 @@
 Mailagent::Application.routes.draw do
   
+  get "feedback/new"
+  post "feedback/new" => "feedback#create"
+  
   get "import" => 'import#index'
   post "import/new_users" => 'import#new_users'
   post "import/assign_lists" => 'import#assign_lists'
@@ -11,7 +14,7 @@ Mailagent::Application.routes.draw do
   
   # limit incoming mails to mailserver ip
   if Rails.env.production?
-    post "incoming_messages" => 'incoming_message#create', :constraints => {:ip => /2001:1a50:11:0:5f:8f:acc2:104/}
+    post "incoming_messages" => 'incoming_message#create', :constraints => {:ip => /127.0.0.1/}
     else
     post "incoming_messages" => 'incoming_message#create'
   end 

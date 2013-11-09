@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   
   has_many :subscriptions, dependent: :destroy
   has_many :lists, :through => :subscriptions
+  has_many :emails
   
   validates :first_name, :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}
@@ -33,6 +34,10 @@ class User < ActiveRecord::Base
   
   def admin?
     role == 'admin'
+  end
+  
+  def number_of_emails
+    emails.count
   end
   
   private

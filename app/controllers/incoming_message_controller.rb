@@ -9,8 +9,10 @@ class IncomingMessageController < ApplicationController
       message_id = received_mail.message_id
         
       # and check if already exists --> never handle the same mail again
-      if Email.find_by_mail_id message_id
+      if (email = Email.find_by_mail_id message_id)
         # then do nothing
+        email.status = 'ok'
+        email.save
         render nothing: true
         return false
       end
@@ -47,15 +49,6 @@ class IncomingMessageController < ApplicationController
         render nothing: true
         return false
       end
-      
-      # TODO: verify extraction of the content from the mail 
-      if received_mail.text_part
-        content = received_mail.text_part.body.decoded
-      elsif received_mail.html_part
-        content = received_mail.html_part.body.decoded
-      else
-        content = received_mail.body.decoded
-      end
      
       # add recipients as bcc
       received_mail.bcc = get_recipients_from_lists(lists)
@@ -63,6 +56,7 @@ class IncomingMessageController < ApplicationController
       
       # store to database
       email = Email.new :user => user, :subject => subject, :content => content, :lists => lists, :mail_id => message_id
+      email.status = 'pending'
       
       #then the mail is valid
       if email.save

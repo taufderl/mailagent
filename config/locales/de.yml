@@ -5,6 +5,10 @@ de:
     login: 'Login'
     email: 'E-Mail'
     password: 'Passwort'
+    wrong_credentials: 'Falsche Email-Adresse oder Passwort.'
+    logout_succeeded: 'Bis zum nächsten Mal.'
+    login_succeeded: 'Herzlich willkommen :-)'
+    
   links:
     new_user: 'Benutzer anlegen'
     users: 'Benutzer anzeigen'
@@ -16,6 +20,7 @@ de:
     admins: 'Zeige Administratoren'
     import: 'Datenimport'
     dashboard: 'Übersicht'
+    feedback: 'Feedback'
     
   helpers:
     actions: "Aktionen"
@@ -75,6 +80,20 @@ de:
     
   import:
     upload: 'Upload'
+  feedback:
+    subject: 'Betreff'
+    content: 'Nachricht'
+    submit: 'Abschicken'
+    field_empty: 'Bitte alle Felder ausfüllen.'
+    thank: 'Vielen Dank für das Feedback.'
+    
+  dashboard:
+    count_lists: 'Anzahl der Listen'
+    count_users: 'Anzahl der Benutzer'
+    count_emails: 'Anzahl der Emails'
+    top_users_by_emails: 'Top 10 Email-Autoren'
+    top_lists_by_emails: 'Top 10 Listen nach Emails'
+    top_lists_by_users: 'Top 10 Listen nach Benutzern'
     
   user_mailer:
     notify_new_admin:

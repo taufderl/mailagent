@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   
   def new
     if current_user
-      redirect_to users_url
+      redirect_to :dashboard
     end
   end
 
@@ -12,15 +12,15 @@ class SessionController < ApplicationController
       user = User.find_by_email(params[:email])
       if user and user.admin? and user.authenticate(params[:password])
         session[:user] = user
-        redirect_to :users
+        redirect_to :dashboard, notice: t('session.login_succeeded')
       else
-        redirect_to start_url, alert: 'Wrong email or password.'
+        redirect_to start_url, alert: t('session.wrong_credentials')
       end
     end
   end
 
   def destroy
     session[:user] = nil
-    redirect_to start_url, notice: 'Logout successful.'
+    redirect_to start_url, notice: t('session.logout_succeeded')
   end
 end

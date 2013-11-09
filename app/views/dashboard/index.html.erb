@@ -1,14 +1,46 @@
 <h1>Dashboard</h1>
-<legend>Übersicht</legend>
-<p>Hier wird es eine Übersicht zum Verteiler geben.</p>
-<list>
-	<li>letzte Mail</li>
-	<li>total Mails</li>
-	<li>Mails pro Verteiler</li>
-	<li>Mails pro Absender</li>
-	<li>Durchschnittliche Empfängerzahl?</li>
-	<li>Empfänger pro Liste? Top-Listen?</li>
-	<li>...</li>
-</list>
-<legend>Statistiken</legend>
-<p>...</p>
+
+<div class="row">
+	<div class="span4">
+		<dl class = "dl-horizontal">
+			<dt><%= t('dashboard.count_lists') %></dt>
+				<dd><%= @number_of_lists %></dd>
+			<dt><%= t('dashboard.count_emails') %></dt>
+				<dd><%= @number_of_emails %></dd>
+			<dt><%= t('dashboard.count_users') %></dt>
+				<dd><%= @number_of_users %></dd>
+		</dl>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="span4">
+		<legend><%= t 'dashboard.top_lists_by_users' %></legend>
+		<dl class = "dl-horizontal">
+			<% @lists_by_users.take(10).each do |list| %>
+				<dt><%= list.name %></dt>
+					<dd><%= list.number_of_users %></dd>
+			<% end %>
+		</dl>
+	</div>
+	<div class="span4">
+		<legend><%= t 'dashboard.top_lists_by_emails' %></legend>
+		<dl class = "dl-horizontal">
+			<% @lists_by_emails.take(10).each do |list| %>
+				<dt><%= list.name %></dt>
+					<dd><%= list.number_of_emails %></dd>
+			<% end %>
+		</dl>
+	</div>
+	<div class="span4">
+		<legend><%= t 'dashboard.top_users_by_emails' %></legend>
+		<dl class = "dl-horizontal">
+			<% @users_by_emails.take(10).each do |user| %>
+				<dt><%= user.full_name %></dt>
+					<dd><%= user.number_of_emails %></dd>
+			<% end %>
+		</dl>
+	</div>
+
+</div>

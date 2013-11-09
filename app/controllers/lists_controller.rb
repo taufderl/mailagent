@@ -22,7 +22,7 @@ class ListsController < ApplicationController
             csv << [subscr.user.first_name, subscr.user.name, subscr.user.email, subscr.list.name]
           end
         end
-        send_data data
+        send_data data, filename: "#{@list.name}.csv"
       end
       
       format.html
