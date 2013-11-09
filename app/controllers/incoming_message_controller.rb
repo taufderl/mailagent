@@ -55,7 +55,7 @@ class IncomingMessageController < ApplicationController
       received_mail.reply_to = ENV['MAILAGENT_ADDRESS']
       
       # store to database
-      email = Email.new :user => user, :subject => subject, :content => content, :lists => lists, :mail_id => message_id
+      email = Email.new :user => user, :subject => subject, :lists => lists, :mail_id => message_id
       email.status = 'pending'
       
       #then the mail is valid
