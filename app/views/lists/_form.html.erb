@@ -1,14 +1,15 @@
 <%= form_for @list, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label t('list.name'), :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+  <div class="form-group">
+    <%= f.label t('list.name'), :class => 'control-label col-sm-2' %>
+    <div class="col-sm-3">
+      <%= f.text_field :name, :class => 'form-control' %>
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit t('helpers.links.save'), :class => 'btn btn-primary' %>
-    <%= link_to t('helpers.links.cancel'),
-                lists_path, :class => 'btn' %>
+  <div class="form-group">
+  	<div class="col-sm-offset-2 col-sm-4">
+	  <%= f.submit t('helpers.links.save'), :class => 'btn btn-primary' %>
+	  <%= link_to t('helpers.links.cancel'), lists_path, :class => 'btn btn-default' %>
+	</div>
   </div>
 <% end %>

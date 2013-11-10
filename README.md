@@ -66,26 +66,30 @@
 - removed mail content completely
 - favicon
 - bug melden funktion
+- exclude message param from log
+- set mail status pending and then OK when received a second time!!
+- dashboard
 
 # VERIFY THAT IT WORKS
 
-- exclude message param from log
-- set mail status pending and then OK when received a second time!!
 - all translations are there
-- dashboard
 
 # TODO:
 
-- render message for curl and save this to curl log
+- migrate to bootstrap 3.0
+- new menu bar
 
+- really remove user from list?
+
+- verify all back buttons use :back
+- render message for curl and save this to curl log
 - finish import functionality, and explain more detailed
 - warn when admin created that email and password is send out
 - implement authentication with gem device to implement auto end session and stuff
-- migrate to bootstrap 3.0
+- remove unused routes for ressources
 
 ## To make it nicer
 - tooltips
-- new menu bar
 - dashboard highcharts
 
 

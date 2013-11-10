@@ -1,5 +1,11 @@
 Mailagent::Application.routes.draw do
   
+  # session functionality
+  get 'start' => 'session#new'
+  post 'start' => 'session#create'
+  delete 'logout' => 'session#destroy'
+  
+  # feedback
   get "feedback/new"
   post "feedback/new" => "feedback#create"
   
@@ -8,9 +14,8 @@ Mailagent::Application.routes.draw do
   post "import/assign_lists" => 'import#assign_lists'
   post "import/generic_import" => 'import#generic_import'
   
+  # dashboard
   get "dashboard" => 'dashboard#index'
-  resources :emails
-  #get 'emails' => 'emails#index'
   
   # limit incoming mails to mailserver ip
   if Rails.env.production?
@@ -18,18 +23,10 @@ Mailagent::Application.routes.draw do
     else
     post "incoming_messages" => 'incoming_message#create'
   end 
-  
-  
-  #test mailer
-  get 'test_mail' => 'test_mail#new'
-  
-  #session functionality
-  get 'start' => 'session#new'
-  post 'start' => 'session#create'
-  delete 'logout' => 'session#destroy'
+    
+  resources :emails
   
   resources :subscriptions
-  #get 'subscriptions' => 'subscriptions#index'
 
   resources :lists
 

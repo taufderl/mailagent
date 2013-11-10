@@ -17,7 +17,7 @@ de:
     emails: 'E-Mails'
     new_email: 'Neue E-Mail'
     profile: 'Profil'
-    admins: 'Zeige Administratoren'
+    admins: 'Administratoren anzeigen'
     import: 'Datenimport'
     dashboard: 'Übersicht'
     feedback: 'Feedback'
@@ -56,6 +56,8 @@ de:
     remove_user: 'Entfernen'
     count: 'Mitglieder'
     is_empty: 'Diese Liste ist leer'
+    edit: 'Liste bearbeiten'
+    new: 'Liste anlegen'
   
   user:
     title: 'Benutzer'

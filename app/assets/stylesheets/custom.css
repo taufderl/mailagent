@@ -3,20 +3,16 @@ footer {
   padding: 20px;
 }
 
-body {
-	padding-top: 50px;
-	padding-bottom: 40px;
-}
 
 table th .search-input { 
   margin: 0px 0px 0px 0px;
-  margin-bottom: 0px;
-  width: 95%;
+  width: 100%;
 }
 
 .copyright {
 	padding: 2px 3px 2px 3px;
-	background: #BBBBBB;
+	background: #222222;
 	opacity: .8;
 	border-radius: 6px;
+	color: #999999;
 }

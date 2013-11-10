@@ -9,12 +9,12 @@ class SessionController < ApplicationController
 
   def create
     if params[:login]
-      user = User.find_by_email(params[:email])
-      if user and user.admin? and user.authenticate(params[:password])
+      user = User.find_by_email(params[:login][:email])
+      if user and user.admin? and user.authenticate(params[:login][:password])
         session[:user] = user
         redirect_to :dashboard, notice: t('session.login_succeeded')
       else
-        redirect_to start_url, alert: t('session.wrong_credentials')
+        redirect_to start_url, alert: params
       end
     end
   end

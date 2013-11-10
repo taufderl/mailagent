@@ -9,71 +9,71 @@
 </head>
 <body>
 	
-	<div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-        	
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          
-          <%= link_to t('page.title'), dashboard_path, html_options = {class: "brand"} %>
-         
-         <% if current_user %> 
-          <div class="container nav-collapse">
-          	<div class="btn-group">
-          	  <%= link_to t('links.dashboard'), dashboard_path, class: 'btn' %>
-          	</div>
-            <div class="btn-group">
-           	  <%= link_to t('user.title'), :users, class: 'btn'%> 
-         	  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-         	     <span class="caret"></span>
-         	  </a>
-         	  <ul class="dropdown-menu">
-         	  	<li><%= link_to t('links.admins'), users_path({:q => {'role_cont' => 'admin'}})  %></li>
-         	  	<li><%= link_to t('links.new_user'), :new_user  %></li>
-         	  </ul>
-         	</div>
-         	
-         	<div class="btn-group">
-         		<%= link_to t('list.title'), :lists, class: 'btn' %>
-         	  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-         	     <span class="caret"></span>
-         	  </a>
-         	  <ul class="dropdown-menu">
-         	  	<li><%= link_to t('links.new_list'), :new_list  %></li>
-         	  </ul>
-            </div>
-            
-         	<div class="btn-group">
-         		<%= link_to t('email.title'), :emails, class: 'btn' %>
-            </div>
-            
-            <div class="btn-group">
-         		<%= link_to t('links.import'), import_path, class: 'btn' %>
-            </div>
-            
-            <div class="btn-group">
-         		<%= link_to t('links.feedback'), :feedback_new, class: 'btn' %>
-            </div>
-            
-			<div class="btn-group pull-right">
-         	  <%= link_to current_user.email, profile_path, class: 'btn btn-inverse' %>
-         	  <%= link_to "Logout", logout_path, method: :delete, class: 'btn btn-inverse' %>
-            </div>
+	<nav class="navbar navbar-static-top navbar-inverse navbar-collapse" role="navigation">
+		
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+			<%= link_to t('page.title'), dashboard_path, html_options = {class: "navbar-brand"} %>
+		</div>
+		
+		<% if current_user %>
+      		<div class="collapse navbar-collapse" id="navbar-main">
+				
+				<ul class="nav navbar-nav">
+				  <li><%= link_to t('links.dashboard'), dashboard_path %></li>
+			      
+			      <li class="dropdown">
+			      	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('user.title')%> <b class="caret"></b></a>
+			      	  <ul class="dropdown-menu">
+			      	  	<li><%= link_to t('links.users'), :users %> </li>
+			      	  	<li><%= link_to t('links.admins'), users_path({:q => {'role_cont' => 'admin'}}) %></li>
+			        	<li><%= link_to t('links.new_user'), :new_user  %></li>
+			      	  </ul>
+			      </li>
+			      
+			      
+			      <li class="dropdown">
+			      	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('list.title') %> <b class="caret"></b></a>
+			      	<ul class="dropdown-menu">
+			      		<li><%= link_to t('list.title'), :lists %></li>
+			         	<li><%= link_to t('links.new_list'), :new_list  %></li>
+			        </ul>
+			      </li>
+			      
+			      <li><%= link_to t('email.title'), :emails %></li>
+			      <li><%= link_to t('links.import'), import_path %></li>
+			      <li><%= link_to t('links.feedback'), :feedback_new %></li>
+
+			    </ul> <!-- NAVBAR-->       
+			    
+				<ul class="nav navbar-nav navbar-right">                
+					<li><%= link_to current_user.email, profile_path %></li>
+		         	<li><%= link_to "Logout", logout_path, method: :delete %></li>
+		        </ul>
             
           </div><!--/.nav-collapse -->
           <% end %>
         </div>
       </div>
-    </div>
+    </nav>
 
     <div class="container">
+    	<div class="row">
+    		<% flash.each do |key, value| %>
+		        <div class="<%= flash_class(key) %>">
+		        	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		              <p><%= value %></p>
+		        </div>
+		  	<% end %>
+		</div>
         <div class="row">
-          <div class="span12">
-            <%= bootstrap_flash %>
+          <div class="col-md-12">
+          	
             <%= yield %>
           </div>
         </div><!--/row-->
@@ -82,7 +82,7 @@
     
 	<footer>
     	<div>
-          		<p class="copyright pull-right">&copy; Tim auf der Landwehr 2013 - <a href="http://taufderl.de">taufderl.de</a></p>
+          	<p class="copyright pull-right">&copy; Tim auf der Landwehr 2013 - <a href="http://taufderl.de">taufderl.de</a></p>
 		</div>
 	</footer>
 	

@@ -50,8 +50,9 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger', group: [:development, :test]
 
 # bootstrap
-gem 'less-rails', '~> 2.4.2'
-gem 'twitter-bootstrap-rails', '~> 2.2.8'
+#gem 'less-rails', '~> 2.4.2'
+#gem 'twitter-bootstrap-rails', '~> 2.2.8'
+gem 'anjlab-bootstrap-rails', '~> 3.0.2.0', :require => 'bootstrap-rails'
 
 # cancan for authorisation
 gem 'cancan', '~> 1.6.10'

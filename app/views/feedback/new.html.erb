@@ -2,24 +2,29 @@
 
 <legend>Feedback, Anregungen und Fehler melden</legend>
 
-<%= simple_form_for :feedback, html: { :class => 'form-horizontal' } do |f| %>
+<div class="col-md-8">
 
-  <div class="control-group">
-    <%= f.label t('feedback.subject'), class: 'control-label' %>
-    <div class="controls">
-     	<%= f.text_field :subject, class: 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label t('feedback.content'), class: 'control-label' %>
-    <div class="controls">
-     	<%= f.text_area :content, class: 'text_area field span5', cols: "40", rows: "10" %>
-    </div>
-  </div>
-  
-  <div class="form-actions">
-	<%= f.submit t('feedback.submit'), class: 'btn btn-primary' %>
-  </div>
+	<%= simple_form_for :feedback, html: { :class => 'form-horizontal', role: 'form' } do |f| %>
+	
+	  <div class="form-group">
+	    <%= f.label t('feedback.subject'), class: 'control-label col-sm-2' %>
+	    <div class="col-sm-4">
+	     	<%= f.text_field :subject, class: 'form-control' %>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label t('feedback.content'), class: 'control-label col-sm-2' %>
+	    <div class="col-sm-8">
+	     	<%= f.text_area :content, class: 'form-control ', cols: "40", rows: "10" %>
+	    </div>
+	  </div>
+	  
+	  <div class="form-group">
+	  	<div class="col-sm-offset-2 col-sm-8">
+			<%= f.submit t('feedback.submit'), class: 'btn btn-primary' %>
+		</div>
+	  </div>
+	
+	<% end %>
 
-<% end %>
-
+</div>

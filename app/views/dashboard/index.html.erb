@@ -1,7 +1,7 @@
 <h1>Dashboard</h1>
 
 <div class="row">
-	<div class="span4">
+	<div class="col-md-4">
 		<dl class = "dl-horizontal">
 			<dt><%= t('dashboard.count_lists') %></dt>
 				<dd><%= @number_of_lists %></dd>
@@ -14,8 +14,7 @@
 </div>
 
 <div class="row">
-
-	<div class="span4">
+	<div class="col-md-4">
 		<legend><%= t 'dashboard.top_lists_by_users' %></legend>
 		<dl class = "dl-horizontal">
 			<% @lists_by_users.take(10).each do |list| %>
@@ -24,7 +23,7 @@
 			<% end %>
 		</dl>
 	</div>
-	<div class="span4">
+	<div class="col-md-4">
 		<legend><%= t 'dashboard.top_lists_by_emails' %></legend>
 		<dl class = "dl-horizontal">
 			<% @lists_by_emails.take(10).each do |list| %>
@@ -33,7 +32,7 @@
 			<% end %>
 		</dl>
 	</div>
-	<div class="span4">
+	<div class="col-md-4">
 		<legend><%= t 'dashboard.top_users_by_emails' %></legend>
 		<dl class = "dl-horizontal">
 			<% @users_by_emails.take(10).each do |user| %>

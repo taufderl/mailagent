@@ -1,13 +1,10 @@
-<%- model_class = List -%>
-<div class="page-header">
-  <h1><%= t("list.show", name: @list.name) %></h1>
-</div>
+<h1><%= t("list.show", name: @list.name) %></h1>
 
 <div>
 <% if @subscriptions.empty? %>
-	<p class="lead"><%= t 'list.is_empty' %></p>
+	<p class="lead"><%= t('list.is_empty') %></p>
 <% else %>
-	<table class="table table-striped table-condensed table-hover">
+	<table class="table table-striped table-bordered table-condensed table-hover">
 	  <thead>
 	  	<th><%= t('user.full_name')%></th>
 	  	<th><%= t('user.email')%></th>
@@ -20,7 +17,7 @@
 	  	    <td><%= link_to s.user.full_name, user_path(s.user) if s.user %></td>
 	  	    <td><%= link_to s.user.email, user_path(s.user) if s.user %></td>
 	  	    <td>
-	  	    	<%= link_to t('list.remove_user'), subscription_path(s), method: :delete, class: 'btn btn-mini btn-danger' %>
+	  	    	<%= link_to t('list.remove_user'), subscription_path(s), method: :delete, class: 'btn btn-xs btn-danger' %>
 	  	    </td>
 	  	  </tr>
 	  	<% end %>
@@ -33,13 +30,13 @@
 
 <div class="form-actions">
   <%= link_to t("helpers.links.back"),
-              lists_path, :class => 'btn'  %>
+              lists_path, :class => 'btn btn-default'  %>
   <%= link_to t("helpers.links.edit"),
-              edit_list_path(@list), :class => 'btn' %>
+              edit_list_path(@list), :class => 'btn btn-default' %>
   <%= link_to t("helpers.links.destroy"),
               list_path(@list),
               :method => 'delete',
-              :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
+              :data => { :confirm => t("helpers.links.confirm") },
               :class => 'btn btn-danger' %>
  <%= link_to "Download CSV", list_path(format: "csv"), class: "btn btn-info" %>
 </div>

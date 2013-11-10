@@ -10,9 +10,9 @@ class ImportController < ApplicationController
   def new_users 
     authorize! :import, :new_users
     
-    if params[:upload] ## file upload -> do validation
-      if !(file = params[:file])
-        flash[:alert] = "Bitte wähle eine Datei."
+    if params[:new_users] ## file upload -> do validation
+      if !(file = params[:new_users][:file])
+        flash.now[:alert] = "Bitte wähle eine Datei."
         render :index
         return
       end
@@ -20,7 +20,7 @@ class ImportController < ApplicationController
       begin
         @sheet = open_spreadsheet file
       rescue Exception => e
-        flash[:alert] = e.message
+        flash.now[:alert] = e.message
         render :index
         return
       end
@@ -46,17 +46,16 @@ class ImportController < ApplicationController
       flash[:notice] = "Import abgeschlossen. #{successful_saved} von #{@users.count} Benutzern erfolgreich importiert."
       render :index
     else
-      render :index 
+      redirect_to import_url
     end
-    
   end # end new_users
   
   # assign lists to existing users
   def assign_lists
     authorize! :import, :upload
     
-    if params[:upload] ## file upload -> do validation
-      if !(file = params[:file])
+    if params[:assign_lists] ## file upload -> do validation
+      if !(file = params[:assign_lists][:file])
         flash.now[:alert] = "Bitte wähle eine Datei."
         render :index
         return
@@ -94,6 +93,8 @@ class ImportController < ApplicationController
       end
       flash.now[:notice] = "Import abgeschlossen. #{successful_saved} von #{@subscriptions.count} Listenabonnements erfolgreich importiert."
       render :index
+    else
+      redirect_to import_url
     end
   end # end assign_lists
 
