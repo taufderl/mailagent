@@ -69,6 +69,9 @@
 - exclude message param from log
 - set mail status pending and then OK when received a second time!!
 - dashboard
+- migrate to bootstrap 3.0
+- new menu bar
+
 
 # VERIFY THAT IT WORKS
 
@@ -76,8 +79,6 @@
 
 # TODO:
 
-- migrate to bootstrap 3.0
-- new menu bar
 
 - really remove user from list?
 

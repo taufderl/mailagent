@@ -21,6 +21,7 @@ de:
     import: 'Datenimport'
     dashboard: 'Übersicht'
     feedback: 'Feedback'
+    edit_profile: 'Profil bearbeiten'
     
   helpers:
     actions: "Aktionen"
