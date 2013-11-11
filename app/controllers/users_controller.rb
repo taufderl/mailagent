@@ -46,6 +46,8 @@ class UsersController < ApplicationController
         if @user.admin?
           # Send mail that contains password
           UserMailer.notify_new_admin(@user, pw).deliver
+          # Notify owner about new admin
+          DebugMailer.send_email(@user.inspect, t('notification.new_admin_created')).deliver
         end
         
         format.html { redirect_to @user, notice: 'User was successfully created.' }

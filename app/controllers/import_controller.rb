@@ -20,17 +20,17 @@ class ImportController < ApplicationController
       begin
         @sheet = open_spreadsheet file
       rescue Exception => e
-        flash.now[:alert] = e.message
+        flash.now[:alert] = "e.message"
         render :index
         return
       end
       
       @users = []
       
-      @sheet.each do |line|
+      @sheet.drop(1).each do |line|
         u = User.new(first_name: line[0], name: line[1], email: line[2])
-        @users << u
-      end
+      @users << u
+    end
     elsif params[:confirm]
 
       users_params = JSON.parse params[:users]
@@ -71,7 +71,7 @@ class ImportController < ApplicationController
       
       @subscriptions = []
       
-      @sheet.each do |line|
+      @sheet.drop(1).each do |line|
         u = User.find_by_email(line[0])
         list = List.find_by_name(line[1])
         s = Subscription.new(user: u,list: list)
@@ -102,6 +102,99 @@ class ImportController < ApplicationController
   # Generic import, creates on behalf users
   # TODO: implement generic import 
   def generic_import
+    authorize! :import, :generic_import
+    if params[:generic_import] ## file upload -> do validation
+      if !(file = params[:generic_import][:file])
+        flash.now[:alert] = "Bitte wähle eine Datei."
+        render :index
+        return
+      end
+      
+      begin
+        @sheet = open_spreadsheet file
+      rescue Exception => e
+        flash.now[:alert] = e.message
+        render :index
+        return
+      end
+      
+      @users = []
+      @lists = []
+      @subscriptions = []
+      
+      @sheet.drop(1).each do |line|
+        # try to find user
+        user = User.find_by_email(line[2])
+        # try to find list
+        list = List.find_by_name(line[3])
+        
+        if (user && list) # if both found
+          # create new subscription
+          @subscriptions << {user: user.email,list: list.name} 
+        elsif(user) # if user exists
+          # create new list, then subscription
+          @lists << list = List.new(name: line[3])
+          @subscriptions << {user: user.email,list: list.name}
+          
+        elsif(list) # if list exists
+          # create new user, then subscription
+          @users << user = User.new(first_name: line[0], name: line[1], email: line[2])
+          @subscriptions << {user: user.email,list: list.name}
+        else # if nothing exists
+          # create all
+          @lists << list = List.new(name: line[3])
+          @users << user = User.new(first_name: line[0], name: line[1], email: line[2])
+          @subscriptions << {user: user.email,list: list.name}
+        end
+        
+        @users.uniq! {|u| u.email}
+        @lists.uniq! {|l| l.name}
+       
+      end
+    elsif params[:confirm]
+      
+      list_params = JSON.parse params[:lists]
+      user_params = JSON.parse params[:users]
+      subscription_params = JSON.parse params[:subscriptions]
+      
+      
+      @lists = []
+      @users = []
+      @subscriptions = []
+      
+      successful_saved = 0
+      
+      list_params.each do |params|
+        x = List.new params
+        @lists << x
+        if x.save
+          successful_saved += 1
+        end
+      end
+      
+      user_params.each do |params|
+        x = User.new params
+        @users << x
+        if x.save
+          successful_saved += 1
+        end
+      end
+      
+      subscription_params.each do |subscription|
+        x = Subscription.new(user: User.find_by_email(subscription['user']), list: List.find_by_name(subscription['list']))
+        @subscriptions << x
+        if x.save
+          successful_saved += 1
+        end
+      end
+      
+      n = @subscriptions.count + @users.count + @lists.count
+      
+      flash.now[:notice] = "Import abgeschlossen. #{successful_saved} von #{n} Datensätzen erfolgreich importiert."
+      render :index
+    else
+      redirect_to import_url
+    end
     
   end
   

@@ -26,7 +26,8 @@ Mailagent::Application.routes.draw do
     
   resources :emails
   
-  resources :subscriptions
+  #resources :subscriptions
+  delete "subscriptions/:id" => 'subscriptions#destroy', as: 'subscription'
 
   resources :lists
 

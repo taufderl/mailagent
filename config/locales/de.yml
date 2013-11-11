@@ -131,4 +131,7 @@ de:
       subject: 'Absender-Adresse nicht in Verteiler'
     no_lists_recognized:
       subject: 'Keine Listen als Empfänger definiert'
+  
+  notification:
+    new_admin_created: "Neuer Administrator"
               

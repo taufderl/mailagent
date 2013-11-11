@@ -71,7 +71,9 @@
 - dashboard
 - migrate to bootstrap 3.0
 - new menu bar
-
+- confirmation for subscription delete added
+- show active page in menu as active
+- clean subscriptions pages
 
 # VERIFY THAT IT WORKS
 
@@ -80,11 +82,8 @@
 # TODO:
 
 
-- really remove user from list?
-
-- verify all back buttons use :back
 - render message for curl and save this to curl log
-- finish import functionality, and explain more detailed
+- clean, explain and improve import functionality
 - warn when admin created that email and password is send out
 - implement authentication with gem device to implement auto end session and stuff
 - remove unused routes for ressources
