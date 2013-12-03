@@ -19,12 +19,12 @@ class IncomingMessageController < ApplicationController
       
       
       # find user
-      user = User.find_by_email(received_mail.from.downcase)
+      user = User.find_by_email(received_mail.from.map(&:downcase))
       
       #test if user exists in DB
       if user == nil
         ErrorMailer.send_no_such_user_error(received_mail).deliver
-        render text: "|#{message_id}| No such user: #{received_mail.from.downcase}"
+        render text: "|#{message_id}| No such user: #{received_mail.from.map(&:downcase)}"
         return false
       end
       

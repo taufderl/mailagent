@@ -81,12 +81,11 @@
 
 - all translations are there
 - test capital letters in emails
-
+- render message for curl and save this to curl log
 
 # TODO:
-- lists in alphabetical order
+- lists in alphabetical order: everywhere
 
-- render message for curl and save this to curl log
 - clean, explain and improve import functionality
 - warn when admin created that email and password is send out
 - implement authentication with gem device to implement auto end session and stuff
