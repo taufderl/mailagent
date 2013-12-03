@@ -16,7 +16,7 @@ class DashboardController < ApplicationController
     @lists_by_users = @lists.select {|l| l.number_of_users > 0}.sort_by {|l| l.number_of_users}.reverse
     
     @lists_by_emails = @lists.select {|l| l.number_of_emails > 0}.sort_by {|l| l.number_of_emails}.reverse
-    
+ 
     
   end
 end

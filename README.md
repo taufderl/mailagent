@@ -74,13 +74,17 @@
 - confirmation for subscription delete added
 - show active page in menu as active
 - clean subscriptions pages
+- bug when creating new user with list
+
 
 # VERIFY THAT IT WORKS
 
 - all translations are there
+- test capital letters in emails
+
 
 # TODO:
-
+- lists in alphabetical order
 
 - render message for curl and save this to curl log
 - clean, explain and improve import functionality

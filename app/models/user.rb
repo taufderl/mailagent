@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
       :confirmation => { :if => :validate_password? }
       
   after_initialize :init
+  before_save :downcase_email
   
   ROLES = ['admin', 'listener']
   
@@ -44,6 +45,10 @@ class User < ActiveRecord::Base
   
   def init
     self.role ||= 'listener'
+  end
+  
+  def downcase_email
+    email.downcase!
   end
   
   def validate_password?

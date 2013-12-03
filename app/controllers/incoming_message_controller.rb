@@ -13,19 +13,18 @@ class IncomingMessageController < ApplicationController
         # then do nothing
         email.status = 'ok'
         email.save
-        render nothing: true
+        render text: "|#{message_id}| received again -> OK :)"
         return false
       end
       
-      DebugMailer.send_email(params[:message], "params").deliver
       
       # find user
-      user = User.find_by_email(received_mail.from)
+      user = User.find_by_email(received_mail.from.downcase)
       
       #test if user exists in DB
       if user == nil
         ErrorMailer.send_no_such_user_error(received_mail).deliver
-        render nothing: true
+        render text: "|#{message_id}| No such user: #{received_mail.from.downcase}"
         return false
       end
       
@@ -39,14 +38,14 @@ class IncomingMessageController < ApplicationController
       if lists.empty?
         # Send error reply when no list recognised
         ErrorMailer.no_lists_recognized_error(received_mail).deliver
-        render nothing: true
+        render text: "|#{message_id}| No lists in mail"
         return false
       end
       
       #User has to be found and in the targeted lists, if not send back error message
       if (lists - user.lists).any?
         ErrorMailer.send_user_not_in_list_error(received_mail).deliver
-        render nothing: true
+        render text: "|#{message_id}| User not in list: #{lists-user.lists}"
         return false
       end
      
@@ -63,13 +62,14 @@ class IncomingMessageController < ApplicationController
         #Send mail and be happy
         sent_mail = received_mail.deliver!
         
-        #TODO: if not delivered
+        render text: "|#{message_id}| saved and sent successfully"
       else
         #Strange thing happened, notify owner
         DebugMailer.send_email("NOT Successful!\n" + email.inspect, "ERROR while saving email, not delivered").deliver
+        render text: "|#{message_id}| could not save email -> This should not happen at all."
       end
       
-      render nothing: true
+      
   end
   
   private 

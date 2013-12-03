@@ -14,7 +14,7 @@ class SessionController < ApplicationController
         session[:user] = user
         redirect_to :dashboard, notice: t('session.login_succeeded')
       else
-        redirect_to start_url, alert: params
+        redirect_to start_url, alert: t('session.wrong_credentials')
       end
     end
   end
