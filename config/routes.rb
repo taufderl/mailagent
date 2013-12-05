@@ -9,6 +9,7 @@ Mailagent::Application.routes.draw do
   get "feedback/new"
   post "feedback/new" => "feedback#create"
   
+  #import
   get "import" => 'import#index'
   post "import/new_users" => 'import#new_users'
   post "import/assign_lists" => 'import#assign_lists'
@@ -24,7 +25,9 @@ Mailagent::Application.routes.draw do
     post "incoming_messages" => 'incoming_message#create'
   end 
     
-  resources :emails
+  #resources :emails
+  get 'emails' => 'emails#index'
+  delete "emails/:id" => 'emails#destroy', as: 'email'
   
   #resources :subscriptions
   delete "subscriptions/:id" => 'subscriptions#destroy', as: 'subscription'

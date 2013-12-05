@@ -48,7 +48,7 @@
 9. run rake assets:precompile and copy asset folder if necessary to public html folder
 10. run application
 
-# just done
+Changelog
 
 - mail: reply field verteiler address
 - recipients as bcc
@@ -74,8 +74,9 @@
 - confirmation for subscription delete added
 - show active page in menu as active
 - clean subscriptions pages
-- bug when creating new user with list
-
+- bug when creating new user with list solved
+- downcase all email inputs
+- removed all unused routes for ressources
 
 # VERIFY THAT IT WORKS
 
@@ -85,11 +86,11 @@
 
 # TODO:
 - lists in alphabetical order: everywhere
+- add no of recipients to email
 
 - clean, explain and improve import functionality
 - warn when admin created that email and password is send out
 - implement authentication with gem device to implement auto end session and stuff
-- remove unused routes for ressources
 
 ## To make it nicer
 - tooltips

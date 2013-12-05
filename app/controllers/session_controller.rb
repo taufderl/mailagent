@@ -9,7 +9,7 @@ class SessionController < ApplicationController
 
   def create
     if params[:login]
-      user = User.find_by_email(params[:login][:email])
+      user = User.find_by_email(params[:login][:email].downcase)
       if user and user.admin? and user.authenticate(params[:login][:password])
         session[:user] = user
         redirect_to :dashboard, notice: t('session.login_succeeded')

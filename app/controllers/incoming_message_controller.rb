@@ -20,7 +20,6 @@ class IncomingMessageController < ApplicationController
       
       # find user
       user = User.find_by_email(received_mail.from.map(&:downcase))
-      
       #test if user exists in DB
       if user == nil
         ErrorMailer.send_no_such_user_error(received_mail).deliver
@@ -50,11 +49,12 @@ class IncomingMessageController < ApplicationController
       end
      
       # add recipients as bcc
-      received_mail.bcc = get_recipients_from_lists(lists)
+      recipients = get_recipients_from_lists(lists)
+      received_mail.bcc = recipients
       received_mail.reply_to = ENV['MAILAGENT_ADDRESS']
       
       # store to database
-      email = Email.new :user => user, :subject => subject, :lists => lists, :mail_id => message_id
+      email = Email.new :user => user, :subject => subject, :lists => lists, :mail_id => message_id, :recipients => recipients.length
       email.status = 'pending'
       
       #then the mail is valid
