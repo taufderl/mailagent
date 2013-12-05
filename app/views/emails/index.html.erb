@@ -6,6 +6,7 @@
       <th><%= t('email.from') %></th>
       <th><%= t('email.subject') %></th>
       <th><%= t('email.lists') %></th>
+      <th><%= t('email.recipients') %></th>
       <th><%= t('email.sent_at') %></th>
       <th><%= t('email.status') %></th>
       <th><%= t('helpers.actions') %></th>
@@ -15,6 +16,7 @@
   		<th><%= f.text_field :user_email_cont, placeholder: t('user.email'), class: 'form-control search-input' %></th>
   		<th><%= f.text_field :subject_cont, placeholder: t('email.subject'), class: 'form-control search-input' %></th>
   		<th><%= f.collection_select :lists_name_eq, List.all, :name, :name , {include_blank: t(:all)}, {class: 'form-control search-input'} %></th>
+  		<th></th>
   		<th></th>
   		<th></th>
   		<th><%= f.submit t('helpers.filter'), class: "btn btn-primary" %>
@@ -30,6 +32,7 @@
         <td><%= email.user.name_with_email if email.user %></td>
         <td><%= email.subject %></td>
         <td><%= email.lists.sort.join(', ') %></td>
+        <td><%= email.recipients %></td>
         <td><%=l email.created_at %></td>
         <td><%= email.status %></td>
         <td>

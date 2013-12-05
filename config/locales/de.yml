@@ -80,6 +80,7 @@ de:
     content: 'Inhalt'
     lists: 'Listen'
     sent_at: 'Zeit'
+    recipients: 'Empfänger'
     
   import:
     upload: 'Upload'
