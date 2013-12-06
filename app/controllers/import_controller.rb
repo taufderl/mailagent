@@ -28,7 +28,7 @@ class ImportController < ApplicationController
       @users = []
       
       @sheet.drop(1).each do |line|
-        u = User.new(first_name: line[0], name: line[1], email: line[2])
+        u = User.new(first_name: line[0], name: line[1], email: line[2].downcase)
       @users << u
     end
     elsif params[:confirm]
@@ -72,7 +72,7 @@ class ImportController < ApplicationController
       @subscriptions = []
       
       @sheet.drop(1).each do |line|
-        u = User.find_by_email(line[0])
+        u = User.find_by_email(line[0].downcase)
         list = List.find_by_name(line[1])
         s = Subscription.new(user: u,list: list)
         @subscriptions << s
@@ -100,7 +100,6 @@ class ImportController < ApplicationController
 
 
   # Generic import, creates on behalf users
-  # TODO: implement generic import 
   def generic_import
     authorize! :import, :generic_import
     if params[:generic_import] ## file upload -> do validation
@@ -124,27 +123,38 @@ class ImportController < ApplicationController
       
       @sheet.drop(1).each do |line|
         # try to find user
-        user = User.find_by_email(line[2])
+        user = User.find_by_email(line[2].downcase)
         # try to find list
         list = List.find_by_name(line[3])
         
-        if (user && list) # if both found
+        if (user && list)# if both found
           # create new subscription
-          @subscriptions << {user: user.email,list: list.name} 
-        elsif(user) # if user exists
-          # create new list, then subscription
-          @lists << list = List.new(name: line[3])
-          @subscriptions << {user: user.email,list: list.name}
-          
-        elsif(list) # if list exists
+          s = Subscription.find_by(user: user, list: list)
+          if s
+            # nothing  
+          else
+            @subscriptions << {user: user.email,list: list.name}
+          end 
+        elsif (user) # if user exists
+          # and list not empty
+          if !(line[3] == nil || line[3] == '')
+            # create new list, then subscription
+            @lists << list = List.new(name: line[3])
+            @subscriptions << {user: user.email,list: list.name}
+          end
+        elsif (list) # if list exists
           # create new user, then subscription
-          @users << user = User.new(first_name: line[0], name: line[1], email: line[2])
+          @users << user = User.new(first_name: line[0], name: line[1], email: line[2].downcase)
           @subscriptions << {user: user.email,list: list.name}
-        else # if nothing exists
-          # create all
-          @lists << list = List.new(name: line[3])
-          @users << user = User.new(first_name: line[0], name: line[1], email: line[2])
-          @subscriptions << {user: user.email,list: list.name}
+        elsif # if nothing exists
+          # create user
+          @users << user = User.new(first_name: line[0], name: line[1], email: line[2].downcase)
+          
+          if !(line[3] == nil || line[3] == '') # and if list not empty also list
+            # create all
+            @lists << list = List.new(name: line[3])
+            @subscriptions << {user: user.email,list: list.name}
+          end
         end
         
         @users.uniq! {|u| u.email}

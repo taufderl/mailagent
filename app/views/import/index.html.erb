@@ -1,53 +1,15 @@
 <h1>Datenimport</h1>
 
-	<legend>Importiere <b>neue</b> Benutzer</legend>
-	<div class=col-md-8>
-		
-		<ul>
-			<li>Nur für neue Benutzer die noch nicht in der Datenbank sind.</li>
-			<li>Es wird hier keine Liste zugewiesen.</li>
-			<li>Bereits existierende Benutzer aus der Datei werden ignoriert.</li>
-		</ul>
-		
-		<%= simple_form_for :new_users, url: :import_new_users, multipart: true, html: {class: 'form-inline'} do |f| %>
-			<div class="form-group">
-				<%= f.file_field :file %>
-			</div>
-			<div class="form-group">
-				<%= f.submit t('import.upload'), name: 'upload', class: 'btn btn-primary' %>
-			</div>
-		<% end %>
-	</div>
-	<div class="col-md-4">
-		<%= image_tag 'import_new_users.png' %>
-	</div>
-
-	<legend>Importiere Abbonements von existierenden Benutzern zu existierenden Listen</legend>
-	<div class="col-md-8">
-		<ul>
-			<li>Sowohl alle Benutzer als auch alle Listen müssen bereits in der Datenbank vorhanden sein.</li>
-			<li>Für jeden Benutzer für den dieses Abonnement noch nicht eingetragen ist wird es angelegt.</li>
-		</ul>
-	
-		<%= simple_form_for :assign_lists, url: :import_assign_lists, multipart: true, html: {class: 'form-inline'} do |f| %>
-			<div class="form-group">
-				<%= f.file_field :file %>
-			</div>
-			<div class="form-group">
-				<%= f.submit t('import.upload'), name: 'upload', class: 'btn btn-primary' %>
-			</div>
-		<% end %>
-	</div>
-	<div class="col-md-4">
-		<%= image_tag 'import_assign_lists.png' %>
-	</div>
-
-	<legend>Importiere Benutzerdaten in bestehende Listen</legend>
+	<legend>So geht's:</legend>
 	<div class="col-md-7">
 	<ul>
-		<li>Benutzer werden, sofern nicht vorhanden, automatisch erstellt.</li>
-		<li>Die zugeordnete Liste wird jedem Benutzer automatisch zugewiesen.</li>
-		<li>Listen müssen vorher erstellt werden.</li>
+		<li>Die Datei muss im Format <b>.xls</b>, <b>.xlsx</b>, <b>.ods</b> oder <b>.csv</b> gespeichert sein</li>
+		<li>Der Inhalt muss dem Screenshot entsprechen</li>
+		<li>Die Listenspalte ist <b>optional</b> und kann weggelassen werden</li>
+		<li>Benutzer werden, sofern nicht vorhanden, automatisch erstellt</li>
+		<li>Die zugeordnete Liste wird dem jeweiligen Benutzer automatisch zugewiesen</li>
+		<li>Bereits existierende Benutzer und Abonnements werden automatisch übersprungen</li>
+		<li>Sollen einem Benutzer mehrere Listen zugeordnet werden, muss für jede Liste eine separate Zeile erstellt werden</li>
 	</ul>
 		<%= simple_form_for :generic_import, url: :import_generic_import, multipart: true, html: {class: 'form-inline'} do |f| %>
 			<div class="form-group">

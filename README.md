@@ -77,6 +77,7 @@ Changelog
 - bug when creating new user with list solved
 - downcase all email inputs
 - removed all unused routes for ressources
+- add no of recipients to email
 
 # VERIFY THAT IT WORKS
 
@@ -86,7 +87,7 @@ Changelog
 
 # TODO:
 - lists in alphabetical order: everywhere
-- add no of recipients to email
+
 
 - clean, explain and improve import functionality
 - warn when admin created that email and password is send out

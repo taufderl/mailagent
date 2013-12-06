@@ -97,13 +97,14 @@
 	
 	</table>
 </div>
-  
-<div class="col-md-12">
-	<%= form_tag() do %>
-	  	<%= hidden_field_tag :users, @users.to_json %>
-	  	<%= hidden_field_tag :lists, @lists.to_json %>
-	  	<%= hidden_field_tag :subscriptions, @subscriptions.to_json %>
-	  	<%= submit_tag "Die Daten sollen wie dargestellt eingespielt werden", name: 'confirm', class: 'btn btn-primary'  %>
-		<%= submit_tag "Abbrechen", name: 'fsdf', class: 'btn btn-alert'  %>
-	<% end %>
+<div class="row">
+	<div class="col-md-12">
+		<%= form_tag() do %>
+		  	<%= hidden_field_tag :users, @users.to_json %>
+		  	<%= hidden_field_tag :lists, @lists.to_json %>
+		  	<%= hidden_field_tag :subscriptions, @subscriptions.to_json %>
+		  	<%= submit_tag "Die Daten sollen wie dargestellt eingespielt werden", name: 'confirm', class: 'btn btn-primary'  %>
+			<%= submit_tag "Abbrechen", name: 'fsdf', class: 'btn btn-alert'  %>
+		<% end %>
+	</div>
 </div>
