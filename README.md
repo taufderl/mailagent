@@ -78,18 +78,18 @@ Changelog
 - downcase all email inputs
 - removed all unused routes for ressources
 - add no of recipients to email
+- clean, explain and improve import functionality
+- VERIFIED: test capital letters in emails
+- VERIFIED: render message for curl and save this to curl log
+- users in alphabetical order
+- lists and subscriptions in alphabetical order
 
 # VERIFY THAT IT WORKS
 
 - all translations are there
-- test capital letters in emails
-- render message for curl and save this to curl log
 
 # TODO:
-- lists in alphabetical order: everywhere
 
-
-- clean, explain and improve import functionality
 - warn when admin created that email and password is send out
 - implement authentication with gem device to implement auto end session and stuff
 

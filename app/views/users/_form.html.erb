@@ -36,7 +36,7 @@
   
   <div class="form-group">
   	<div class="col-sm-offset-2 col-sm-4">
-	    <%= f.submit t('helpers.links.save'), :class => 'btn btn-primary' %>
+	    <%= f.submit t('helpers.links.save'), :class => 'btn btn-primary' , :data => { :confirm => t("helpers.links.confirm") } %>
 	    <%= link_to t('helpers.links.cancel'), :back, :class => 'btn btn-default' %>
 	</div>
   </div>

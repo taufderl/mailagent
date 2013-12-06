@@ -35,7 +35,7 @@
         <td><%= link_to user.first_name, user_path(user) %></td>
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= link_to user.email, user_path(user) %></td>
-        <td><%= user.lists.sort.join(', ') %></td>
+        <td><%= user.lists.order(:name).join(', ') %></td>
         <td>
           <%= link_to t("helpers.links.edit"), edit_user_path(user), :class => 'btn btn-default btn-xs' %>
           <%= link_to t("helpers.links.destroy"),

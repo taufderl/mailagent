@@ -31,7 +31,7 @@
       <tr>
         <td><%= email.user.name_with_email if email.user %></td>
         <td><%= email.subject %></td>
-        <td><%= email.lists.sort.join(', ') %></td>
+        <td><%= email.lists.order(:name).join(', ') %></td>
         <td><%= email.recipients %></td>
         <td><%=l email.created_at %></td>
         <td><%= email.status %></td>

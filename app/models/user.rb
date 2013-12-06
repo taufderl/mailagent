@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   after_initialize :init
   before_save :downcase_email
   
+  default_scope order("LOWER(name)")
+  
   ROLES = ['admin', 'listener']
   
   def full_name
