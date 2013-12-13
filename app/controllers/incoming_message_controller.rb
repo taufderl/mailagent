@@ -51,7 +51,7 @@ class IncomingMessageController < ApplicationController
       # add recipients as bcc
       recipients = get_recipients_from_lists(lists)
       received_mail.bcc = recipients
-      received_mail.reply_to = ENV['MAILAGENT_ADDRESS']
+      #received_mail.reply_to = ENV['MAILAGENT_ADDRESS']
       
       # store to database
       email = Email.new :user => user, :subject => subject, :lists => lists, :mail_id => message_id, :recipients => recipients.length
