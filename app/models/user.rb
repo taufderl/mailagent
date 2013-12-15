@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
       :confirmation => { :if => :validate_password? }
       
   after_initialize :init
-  before_save :downcase_email
+  before_validation :downcase_email
   
   default_scope order("LOWER(users.name)")
   
@@ -45,17 +45,17 @@ class User < ActiveRecord::Base
   
   private
   
-  def init
-    self.role ||= 'listener'
-  end
-  
-  def downcase_email
-    email.downcase!
-    email.strip!
-  end
-  
-  def validate_password?
-    password.present? || password_confirmation.present?
-  end
+    def init
+      self.role ||= 'listener'
+    end
+    
+    def downcase_email
+      email.downcase!
+      email.strip!
+    end
+    
+    def validate_password?
+      password.present? || password_confirmation.present?
+    end
 
 end
