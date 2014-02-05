@@ -1,4 +1,6 @@
 
-filename = "./maildump_1383519827.log"
+filename = "./maildump_broken-mail.log"
 
-`curl -X POST -d @"#{filename}" http://cjg-belm.de/fcgi-bin/mailagent/incoming_messages`
+result = `curl -X POST -d @"#{filename}" http://localhost:3000/incoming_messages`
+
+print result
