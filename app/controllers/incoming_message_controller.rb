@@ -60,6 +60,8 @@ class IncomingMessageController < ApplicationController
       #then the mail is valid
       if email.save
         #Send mail and be happy
+        timestamp = Time.now
+        File.open("./log/outgoing_mail_#{timestamp}.log", 'w') {|f| f.write(received_mail.to_s) }
         sent_mail = received_mail.deliver!
         
         render text: "|#{message_id}| saved and sent successfully"
