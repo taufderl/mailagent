@@ -83,6 +83,10 @@ Changelog
 - VERIFIED: render message for curl and save this to curl log
 - users in alphabetical order
 - lists and subscriptions in alphabetical order
+- bug with sorting and included models fixed
+- reply_to field removed
+- strip emails before save
+- CSV import corrected
 
 # VERIFY THAT IT WORKS
 
@@ -92,6 +96,7 @@ Changelog
 
 - warn when admin created that email and password is send out
 - implement authentication with gem device to implement auto end session and stuff
+- add more roles for selective lists
 
 ## To make it nicer
 - tooltips
