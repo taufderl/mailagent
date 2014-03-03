@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131109161811) do
+ActiveRecord::Schema.define(version: 20131205160237) do
 
   create_table "email_lists", force: true do |t|
     t.integer  "email_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20131109161811) do
     t.datetime "updated_at"
     t.string   "mail_id"
     t.string   "status"
+    t.integer  "recipients"
   end
 
   add_index "emails", ["user_id"], name: "index_emails_on_user_id"

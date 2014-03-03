@@ -124,7 +124,12 @@ de:
               invalid: 'ungültig'
             user:
               blank: 'existiert nicht'
-              
+
+  will_paginate:
+    previous_label: "&#8592; Vorherige Seite"
+    next_label: "Nächste Seite &#8594;"
+    page_gap: "&hellip;"
+    
   error_mailer:
     no_such_user: 
       subject: 'Absender-Adresse nicht registriert'

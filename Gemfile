@@ -82,3 +82,7 @@ gem 'simple_form', "~> 3.0.0"
 
 # roo for import of csv and odt and files
 gem 'roo', "~> 1.12.2"
+
+# pagination
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       params[:q] = nil
     end
     @q = User.includes(:lists).search(params[:q])
-    @users = @q.result(distinct: true)
+    @users = @q.result(distinct: true).paginate(page: params[:page])
   end
 
   # GET /users/1
