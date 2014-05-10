@@ -102,6 +102,11 @@ Changelog
 - tooltips
 - dashboard highcharts
 
+License
+-------
+
+Mailagent is licensed under the MIT license. See [LICENSE](LICENSE) for details.
+
 
 
 
