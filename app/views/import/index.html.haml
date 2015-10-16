@@ -1,0 +1,30 @@
+%h1 Datenimport
+%legend So geht's:
+.col-md-7
+  %ul
+    %li
+      Die Datei muss im Format
+      = succeed "," do
+        %b .xls
+      = succeed "," do
+        %b .xlsx
+      %b .ods
+      oder
+      %b .csv
+      gespeichert sein
+    %li Der Inhalt muss dem Screenshot entsprechen
+    %li
+      Die Listenspalte ist
+      %b optional
+      und kann weggelassen werden
+    %li Benutzer werden, sofern nicht vorhanden, automatisch erstellt
+    %li Die zugeordnete Liste wird dem jeweiligen Benutzer automatisch zugewiesen
+    %li Bereits existierende Benutzer und Abonnements werden automatisch übersprungen
+    %li Sollen einem Benutzer mehrere Listen zugeordnet werden, muss für jede Liste eine separate Zeile erstellt werden
+  = simple_form_for :generic_import, url: :import_generic_import, multipart: true, html: {class: 'form-inline'} do |f|
+    .form-group
+      = f.file_field :file
+    .form-group
+      = f.submit t('import.upload'), name: 'upload', class: 'btn btn-primary', disabled: false
+.col-md-5
+  = image_tag 'generic_import.png'

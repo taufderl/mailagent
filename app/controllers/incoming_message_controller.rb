@@ -10,13 +10,12 @@ class IncomingMessageController < ApplicationController
         
       # and check if already exists --> never handle the same mail again
       if (email = Email.find_by_mail_id message_id)
-        # then do nothing
+        # then set status to send successful
         email.status = 'ok'
         email.save
         render text: "|#{message_id}| received again -> OK :)"
         return false
       end
-      
       
       # find user
       user = User.find_by_email(received_mail.from.map(&:downcase))
@@ -33,7 +32,6 @@ class IncomingMessageController < ApplicationController
       # and analyze subject to find lists 
       lists = parse_lists_from_subject(subject)
       
-      
       if lists.empty?
         # Send error reply when no list recognised
         ErrorMailer.no_lists_recognized_error(received_mail).deliver
@@ -41,8 +39,8 @@ class IncomingMessageController < ApplicationController
         return false
       end
       
-      #User has to be found and in the targeted lists, if not send back error message
-      if (lists - user.lists).any?
+      #If the user is a listener he has to be in all the addressed lists
+      if user.listener? and (lists - user.lists).any?
         ErrorMailer.send_user_not_in_list_error(received_mail).deliver
         render text: "|#{message_id}| User not in list: #{lists-user.lists}"
         return false
@@ -51,7 +49,6 @@ class IncomingMessageController < ApplicationController
       # add recipients as bcc
       recipients = get_recipients_from_lists(lists)
       received_mail.bcc = recipients
-      #received_mail.reply_to = ENV['MAILAGENT_ADDRESS']
       
       # store to database
       email = Email.new :user => user, :subject => subject, :lists => lists, :mail_id => message_id, :recipients => recipients.length
@@ -70,7 +67,6 @@ class IncomingMessageController < ApplicationController
         DebugMailer.send_email("NOT Successful!\n" + email.inspect, "ERROR while saving email, not delivered").deliver
         render text: "|#{message_id}| could not save email -> This should not happen at all."
       end
-      
       
   end
   

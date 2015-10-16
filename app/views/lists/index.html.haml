@@ -1,0 +1,19 @@
+- model_class = List
+%h1= t 'list.title'
+%div
+  %table.table.table-striped.table-bordered.table-condensed.table-hover
+    %thead
+      %tr
+        %th= t('list.name')
+        %th= t('list.count')
+        %th= t('helpers.actions')
+    %tbody
+      - @lists.each do |list|
+        %tr
+          %td= link_to list.name, list_path(list)
+          %td= list.users.count
+          %td
+            = link_to t("helpers.links.edit"),  edit_list_path(list), :class => 'btn btn-default btn-xs'
+            = link_to t("helpers.links.destroy"), list_path(list), method: :delete,
+              :data => { :confirm => t("helpers.links.confirm") },
+              :class => 'btn btn-xs btn-danger'

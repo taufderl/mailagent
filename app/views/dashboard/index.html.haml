@@ -1,0 +1,29 @@
+%h1 Dashboard
+.row
+  .col-md-4
+    %dl.dl-horizontal
+      %dt= t('dashboard.count_lists')
+      %dd= @number_of_lists
+      %dt= t('dashboard.count_emails')
+      %dd= @number_of_emails
+      %dt= t('dashboard.count_users')
+      %dd= @number_of_users
+.row
+  .col-md-4
+    %legend= t 'dashboard.top_lists_by_users'
+    %dl.dl-horizontal
+      - @lists_by_users.take(10).each do |list|
+        %dt= list.name
+        %dd= list.number_of_users
+  .col-md-4
+    %legend= t 'dashboard.top_lists_by_emails'
+    %dl.dl-horizontal
+      - @lists_by_emails.take(10).each do |list|
+        %dt= list.name
+        %dd= list.number_of_emails
+  .col-md-4
+    %legend= t 'dashboard.top_users_by_emails'
+    %dl.dl-horizontal
+      - @users_by_emails.take(10).each do |user|
+        %dt= user.full_name
+        %dd= user.number_of_emails

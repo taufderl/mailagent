@@ -1,0 +1,39 @@
+- model_class = Email
+%h1= t('email.title')
+%table.table.table-striped.table-condensed.table-bordered.table-hover
+  %thead
+    %tr
+      %th= t('email.from')
+      %th= t('email.subject')
+      %th= t('email.lists')
+      %th= t('email.recipients')
+      %th= t('email.sent_at')
+      %th= t('email.status')
+      %th= t('helpers.actions')
+    %tr.search-row
+      = search_form_for @q, class: 'form-inline' do |f|
+        %th= f.text_field :user_email_cont, placeholder: t('user.email'), class: 'form-control search-input'
+        %th= f.text_field :subject_cont, placeholder: t('email.subject'), class: 'form-control search-input'
+        %th= f.collection_select :lists_name_eq, List.all, :name, :name , {include_blank: t(:all)}, {class: 'form-control search-input'}
+        %th
+        %th
+        %th
+        %th
+          = f.submit t('helpers.filter'), class: "btn btn-primary"
+          = f.submit t('helpers.clear_filter'), name: :clear_search, class: "btn btn-primary"
+  %tbody
+    - @emails.each do |email|
+      %tr
+        %td= email.user.name_with_email if email.user
+        %td= email.subject
+        %td= email.lists.order(:name).join(', ')
+        %td= email.recipients
+        %td= l email.created_at
+        %td= email.status
+        %td
+          = link_to t('helpers.links.destroy'),
+            email_path(email),
+            :method => :delete,
+            :data => { :confirm => t("helpers.links.confirm") },
+            :class => 'btn btn-xs btn-danger'
+= will_paginate @emails, renderer: BootstrapPagination::Rails

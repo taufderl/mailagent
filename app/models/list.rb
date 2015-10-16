@@ -6,7 +6,7 @@ class List < ActiveRecord::Base
   
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   
-  default_scope order(:name)
+  default_scope { order(:name) }
   
   def to_s
     name

@@ -1,0 +1,22 @@
+- model_class = User
+%h1= t('links.profile')
+%dl.dl-horizontal
+  %dt
+    %strong
+      = t('user.full_name')
+      \:
+  %dd= @current_user.full_name
+  %dt
+    %strong
+      = t('user.email')
+      \:
+  %dd= @current_user.email
+  %dt
+    %strong
+      = t('list.title')
+      \:
+  %dd= @current_user.lists.join(', ')
+.form-group
+  = link_to t('helpers.links.back'), :back, :class => 'btn btn-default'
+  = link_to t('helpers.links.edit'),               |
+    edit_profile_path, :class => 'btn btn-default' |

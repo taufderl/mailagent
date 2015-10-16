@@ -3,8 +3,4 @@ class Email < ActiveRecord::Base
   has_many :email_lists, :dependent => :destroy
   has_many :lists, :through => :email_lists
   
-  def content_cutted
-    "#{content[0..30]}..." if content 
-  end
-  
 end

@@ -1,0 +1,24 @@
+.col-md-8
+  .well
+    %p.lead
+      Herzlich Willkommen auf der Mailinglisten-Verwaltung der katholischen Jugend Belm.
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus auctor est non diam cursus bibendum. Curabitur sit amet ligula cursus, porta velit eget, interdum lectus. Suspendisse pellentesque auctor mi faucibus pellentesque. Mauris dignissim sodales mauris nec accumsan. Suspendisse potenti. Proin diam ipsum, imperdiet at orci in, ultrices condimentum justo. Sed elementum convallis turpis sit amet lacinia. Nunc pharetra, urna ornare varius commodo, purus metus congue lectus, sed mattis tortor turpis nec purus. Suspendisse id blandit mi. Duis porttitor nulla et ipsum pretium ullamcorper. Nam ac diam at ante pretium ullamcorper. Donec quis massa cursus, dictum massa vitae, pretium massa. In urna neque, dapibus tempor augue id, suscipit tincidunt sapien. Suspendisse dignissim leo id enim porta, sit amet pellentesque nulla vehicula.
+    %p
+      Integer quam sapien, convallis et malesuada sed, tincidunt ut lectus. Sed nunc mi, rutrum in mauris vitae, hendrerit viverra orci. Sed at dolor vitae mi pretium tempor. Proin posuere lobortis justo, id hendrerit turpis iaculis a. Ut pellentesque lacus sem, in ornare ante laoreet vel. Donec sagittis aliquam ipsum nec consequat. Integer sodales neque vitae metus lobortis, et tincidunt nisl placerat. Nulla facilisi. Proin adipiscing luctus turpis sed placerat. Pellentesque dictum arcu a lorem feugiat, vel varius justo hendrerit. Praesent tempor mattis sem nec congue. Nunc a laoreet mauris. Sed ut risus sapien. Fusce faucibus feugiat tellus, eu tempus mi dapibus ac. Fusce lorem purus, luctus rutrum tortor at, congue dapibus sapien. Suspendisse potenti.
+    %p
+      Sed mattis arcu in dolor tempor hendrerit. Donec nec urna sapien. Vivamus ut imperdiet mi. Vivamus vulputate nunc non enim malesuada, ut viverra ipsum bibendum. Integer mollis, diam eget fermentum vestibulum, orci eros posuere ante, eget condimentum libero est vel leo. Etiam convallis quam libero, eu egestas neque viverra sit amet. Sed hendrerit lectus eu fermentum facilisis. Integer eget tristique lorem, id blandit lectus.
+.col-md-4
+  %legend= t('session.login')
+  = simple_form_for :login, html: { :class => 'form-horizontal', role: 'form' } do |f|
+    .form-group
+      = f.label :email, t('session.email'), class: 'control-label col-sm-4'
+      .col-sm-6
+        = f.text_field :email, class: 'form-control'
+    .form-group
+      = f.label :password, t('session.password'), class: 'control-label col-sm-4'
+      .col-sm-6
+        = f.password_field :password, class: 'form-control'
+    .form-group
+      .col-sm-offset-4.col-sm-3
+        = f.submit t('session.login'), class: 'btn btn-primary'

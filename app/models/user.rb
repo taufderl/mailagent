@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
   after_initialize :init
   before_validation :downcase_email
   
-  default_scope order("LOWER(users.name)")
+  default_scope { order("LOWER(users.name)") }
   
-  ROLES = ['admin', 'listener']
+  ROLES = ['admin', 'listener', 'author']
   
   def full_name
     "#{first_name} #{name}"
@@ -38,7 +38,15 @@ class User < ActiveRecord::Base
   def admin?
     role == 'admin'
   end
+
+  def author?
+    role == 'author'
+  end
   
+  def listener?
+    role == 'listener'
+  end
+
   def number_of_emails
     emails.count
   end

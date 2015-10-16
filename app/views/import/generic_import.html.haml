@@ -1,0 +1,69 @@
+%h1 Datenimport
+%legend Folgende Benutzer werden neu angelegt:
+.col-md-5
+  %table.table.table-condensed.table-bordered
+    %thead
+      %tr
+        %th
+        %th= t 'user.first_name'
+        %th= t 'list.name'
+        %th= t 'user.email'
+        %th
+    %tbody
+      - @users.each_with_index do |user, i|
+        - if user.valid?
+          %tr
+            - else
+              %tr.danger
+                %td= i
+                %td= user.first_name
+                %td= user.name
+                %td= user.email
+                %td
+                  - if (!user.valid?)
+                    - user.errors.messages.each do |attr, m|
+                      = "#{attr}: "
+                      = m.join(' und ')
+%legend Folgende Listen werden neu angelegt:
+.col-md-5
+  %table.table.table-condensed.table-bordered
+    %thead
+      %tr
+        %th
+        %th= t 'list.name'
+        %th
+    %tbody
+      - @lists.each_with_index do |list, i|
+        - if list.valid?
+          %tr
+            - else
+              %tr.danger
+                %td= i
+                %td= list.name
+                %td
+                  - if (!list.valid?)
+                    - list.errors.messages.each do |attr, m|
+                      = "#{attr}: "
+                      = m.join(' und ')
+%legend Folgende Listenabos werden angelegt:
+.col-md-5
+  %table.table.table-condensed.table-bordered
+    %thead
+      %tr
+        %th
+        %th= t 'user.email'
+        %th= t 'list.name'
+    %tbody
+      - @subscriptions.each_with_index do |sub, i|
+        %tr
+          %td= i
+          %td= sub[:user]
+          %td= sub[:list]
+.row
+  .col-md-12
+    = form_tag() do
+      = hidden_field_tag :users, @users.to_json
+      = hidden_field_tag :lists, @lists.to_json
+      = hidden_field_tag :subscriptions, @subscriptions.to_json
+      = submit_tag "Die Daten sollen wie dargestellt eingespielt werden", name: 'confirm', class: 'btn btn-primary'
+      = submit_tag "Abbrechen", name: 'fsdf', class: 'btn btn-alert'

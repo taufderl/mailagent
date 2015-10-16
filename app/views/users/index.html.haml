@@ -1,0 +1,38 @@
+- model_class = User
+%h1= t 'user.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th= t('user.first_name')
+      %th= t('user.name')
+      %th= t('user.email')
+      %th= t('helpers.actions')
+      %th= t('user.role')
+      %th= t('user.lists')
+    %tr.search-row
+      = search_form_for @q, class: 'form-inline' do |f|
+        %th= f.text_field :first_name_cont, placeholder: t('user.first_name'), class: 'form-control search-input'
+        %th= f.text_field :name_cont, placeholder: t('user.name'), class: 'form-control search-input'
+        %th= f.text_field :email_cont, placeholder: t('user.email'), class: 'form-control search-input'
+        %th= f.collection_select :lists_name_eq, List.all, :name, :name , {include_blank: t(:all)}, {class: 'form-control search-input'}
+        %th= f.collection_select :role_eq, User.roles, :to_s, :to_s, {include_blank: t(:all)}, {class: 'form-control search-input'}
+        %th
+          = f.submit t('helpers.filter'), class: "btn btn-primary"
+          = f.submit t('helpers.clear_filter'), name: :clear_search,  class: "btn btn-primary"
+  %tbody
+    - @users.each do |user|
+      - if user.admin?
+        %tr.success
+      - else
+        %tr
+          %td= link_to user.first_name, user_path(user)
+          %td= link_to user.name, user_path(user)
+          %td= link_to user.email, user_path(user)
+          %td= user.lists.order(:name).join(', ')
+          %td= user.role
+          %td
+            = link_to t("helpers.links.edit"), edit_user_path(user), class: 'btn btn-default btn-xs'
+            = link_to t("helpers.links.destroy"), user_path(user), method: :delete, data: { :confirm => t("helpers.links.confirm") },
+              :class => 'btn btn-xs btn-danger'
+
+= will_paginate @users, renderer: BootstrapPagination::Rails

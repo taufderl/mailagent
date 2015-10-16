@@ -1,0 +1,26 @@
+- model_class = User
+%h1= t 'user.title'
+%dl.dl-horizontal
+  %dt
+    %strong
+      = t('user.full_name')
+      \:
+  %dd= @user.full_name
+  %dt
+    %strong
+      = t('user.email')
+      \:
+  %dd= @user.email
+  %dt
+    %strong
+      = t('list.title')
+      \:
+  %dd= @user.lists.join(', ')
+.form-group
+  = link_to t('helpers.links.back'), :back, :class => 'btn btn-default'
+  = link_to t('helpers.links.edit'), edit_user_path(@user), :class => 'btn btn-default'
+  = link_to t('helpers.links.destroy'),                  |
+    user_path(@user),                                    |
+    :method => 'delete',                                 |
+    :data => { :confirm => t("helpers.links.confirm") }, |
+    :class => 'btn btn-danger'                           |

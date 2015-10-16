@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20131205160237) do
 
-  create_table "email_lists", force: true do |t|
+  create_table "email_lists", force: :cascade do |t|
     t.integer  "email_id"
     t.integer  "list_id"
     t.datetime "created_at"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20131205160237) do
   add_index "email_lists", ["email_id"], name: "index_email_lists_on_email_id"
   add_index "email_lists", ["list_id"], name: "index_email_lists_on_list_id"
 
-  create_table "emails", force: true do |t|
+  create_table "emails", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "subject"
     t.datetime "created_at"
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 20131205160237) do
 
   add_index "emails", ["user_id"], name: "index_emails_on_user_id"
 
-  create_table "lists", force: true do |t|
+  create_table "lists", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "subscriptions", force: true do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "list_id"
     t.datetime "created_at"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20131205160237) do
   add_index "subscriptions", ["list_id"], name: "index_subscriptions_on_list_id"
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"

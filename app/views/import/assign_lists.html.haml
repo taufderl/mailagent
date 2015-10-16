@@ -1,0 +1,34 @@
+%h1 Datenimport
+%legend Importiere Abbonements von existierenden Benutzern zu existierenden Listen
+.col-md-10
+  %dl
+    %dt
+      Bitte die folgende Tabelle genau prüfen.
+  %li Einträge mit Fehlermeldung werden beim Import ignoriert.
+  %li Fehler müssen in der Datei behoben werden und diese muss dann neu hochgeladen werden.
+  %table.table.table-condensed.table-bordered
+    %thead
+      %tr
+        %th
+        %th= t 'user.email'
+        %th= t 'list.name'
+        %th
+    %tbody
+      - @subscriptions.each_with_index do |sub, i|
+        - if sub.valid?
+          %tr
+            - else
+              %tr.danger
+                %td= i
+                %td= sub.user.email if sub.user
+                %td= sub.list.name if sub.list
+                %td
+                  - if (!sub.valid?)
+                    - sub.errors.messages.each do |attr, m|
+                      = "#{attr}: "
+                      = m.join(' und ')
+.col-md-12
+  = form_tag() do
+    = hidden_field_tag :subscriptions, @subscriptions.to_json
+    = submit_tag "Die Tabelle ist korrekt und die Benutzer sollen eingespielt werden", name: 'confirm', class: 'btn btn-primary'
+    = submit_tag "Abbrechen", name: 'fsdf', class: 'btn btn-alert'
