@@ -25,14 +25,14 @@
         %tr.success
       - else
         %tr
-          %td= link_to user.first_name, user_path(user)
-          %td= link_to user.name, user_path(user)
-          %td= link_to user.email, user_path(user)
-          %td= user.lists.order(:name).join(', ')
-          %td= user.role
-          %td
-            = link_to t("helpers.links.edit"), edit_user_path(user), class: 'btn btn-default btn-xs'
-            = link_to t("helpers.links.destroy"), user_path(user), method: :delete, data: { :confirm => t("helpers.links.confirm") },
-              :class => 'btn btn-xs btn-danger'
+      %td= link_to user.first_name, user_path(user)
+      %td= link_to user.name, user_path(user)
+      %td= link_to user.email, user_path(user)
+      %td= user.lists.order(:name).join(', ')
+      %td= user.role
+      %td
+        = link_to t("helpers.links.edit"), edit_user_path(user), class: 'btn btn-default btn-xs'
+        = link_to t("helpers.links.destroy"), user_path(user), method: :delete, data: { :confirm => t("helpers.links.confirm") },
+          :class => 'btn btn-xs btn-danger'
 
 = will_paginate @users, renderer: BootstrapPagination::Rails
