@@ -8,7 +8,7 @@ group :development do
   gem 'sqlite3', '~> 1.3.11'
 end
 group :production do
-  gem 'mysql2', '0.3.13'
+  gem 'mysql2', '~> 0.4.1'
 end
 
 # Use SCSS for stylesheets
