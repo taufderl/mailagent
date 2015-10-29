@@ -7,7 +7,7 @@ class EmailsController < ApplicationController
     if params[:clear_search]
       params[:q] = nil
     end
-    @q = Email.search(params[:q]).order('created_at DESC')
+    @q = Email.order('created_at DESC').search(params[:q])
     @emails = @q.result(distinct: true).paginate(page: params[:page], per_page: 100)
   end
 
