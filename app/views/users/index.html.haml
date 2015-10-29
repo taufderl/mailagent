@@ -1,6 +1,6 @@
-- model_class = User
-%h1= t 'user.title', :default => model_class.model_name.human.pluralize.titleize
-%table.table.table-bordered.table-condensed.table-hover
+%h1.page-header
+  = t 'user.title'
+%table.table.table-striped.table-bordered.table-condensed.table-hover
   %thead
     %tr
       %th= t('user.first_name')

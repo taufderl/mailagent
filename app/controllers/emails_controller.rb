@@ -8,7 +8,7 @@ class EmailsController < ApplicationController
       params[:q] = nil
     end
     @q = Email.search(params[:q])
-    @emails = @q.result(distinct: true).paginate(page: params[:page])
+    @emails = @q.result(distinct: true).paginate(page: params[:page], per_page: 100)
   end
 
   # DELETE /emails/1
