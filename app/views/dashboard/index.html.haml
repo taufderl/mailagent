@@ -16,15 +16,105 @@
       - @lists_by_users.take(10).each do |list|
         %dt= list.name
         %dd= list.number_of_users
+    #lists_by_users_donut{style: "width:320px; height:320px;"}
+    :javascript
+      $(function () {
+        $('#lists_by_users_donut').highcharts({
+            chart: {
+                type: 'pie',
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '<b>{point.y} Users</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: #{@lists_by_users.map{|l| [l.name, l.number_of_users]}.to_json}
+            }]
+        });
+      });
   .col-md-4
     %legend= t 'dashboard.top_lists_by_emails'
     %dl.dl-horizontal
       - @lists_by_emails.take(10).each do |list|
         %dt= list.name
         %dd= list.number_of_emails
+    #lists_by_emails_donut{style: "width:320px; height:320px;"}
+    :javascript
+      $(function () {
+        $('#lists_by_emails_donut').highcharts({
+            chart: {
+                type: 'pie',
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '<b>{point.y} Emails</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: #{@lists_by_emails.map{|l| [l.name, l.number_of_emails]}.to_json}
+            }]
+        });
+      });
   .col-md-4
     %legend= t 'dashboard.top_users_by_emails'
     %dl.dl-horizontal
       - @users_by_emails.take(10).each do |user|
         %dt= user.full_name
         %dd= user.number_of_emails
+    #users_by_emails_donut{style: "width:320px; height:320px;"}
+    :javascript
+      $(function () {
+        $('#users_by_emails_donut').highcharts({
+            chart: {
+                type: 'pie',
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '<b>{point.y} Emails</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: #{@users_by_emails.map{|u| [u.full_name, u.number_of_emails]}.to_json}
+            }]
+        });
+      });

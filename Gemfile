@@ -27,7 +27,7 @@ gem 'therubyracer',  '~> 0.12.2', platforms: :ruby
 gem 'jquery-rails', '~> 4.0.5'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 2.5.3'
+#gem 'turbolinks', '~> 2.5.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.3.2'
@@ -60,10 +60,10 @@ gem 'cancan', '~> 1.6.10'
 # figaro for setting configs through application.yml and ENV variables
 gem 'figaro', '~> 1.1.1'
 
-group :production do 
+group :production do
   # exception notification for email exceptions
   gem 'exception_notification', '~> 4.1.1'
-  
+
   # fcgi for fcgi script running
   gem 'passenger', '~> 5.0.20'
 end
@@ -88,3 +88,5 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 
 gem 'haml', '~> 4.0.7'
+
+gem "highcharts-rails"
