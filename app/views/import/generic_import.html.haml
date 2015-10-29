@@ -13,17 +13,17 @@
       - @users.each_with_index do |user, i|
         - if user.valid?
           %tr
-            - else
-              %tr.danger
-                %td= i
-                %td= user.first_name
-                %td= user.name
-                %td= user.email
-                %td
-                  - if (!user.valid?)
-                    - user.errors.messages.each do |attr, m|
-                      = "#{attr}: "
-                      = m.join(' und ')
+        - else
+          %tr.danger
+        %td= i
+        %td= user.first_name
+        %td= user.name
+        %td= user.email
+        %td
+          - if (!user.valid?)
+            - user.errors.messages.each do |attr, m|
+              = "#{attr}: "
+              = m.join(' und ')
 %legend Folgende Listen werden neu angelegt:
 .col-md-5
   %table.table.table-condensed.table-bordered
@@ -36,15 +36,15 @@
       - @lists.each_with_index do |list, i|
         - if list.valid?
           %tr
-            - else
-              %tr.danger
-                %td= i
-                %td= list.name
-                %td
-                  - if (!list.valid?)
-                    - list.errors.messages.each do |attr, m|
-                      = "#{attr}: "
-                      = m.join(' und ')
+        - else
+          %tr.danger
+        %td= i
+        %td= list.name
+        %td
+          - if (!list.valid?)
+            - list.errors.messages.each do |attr, m|
+              = "#{attr}: "
+              = m.join(' und ')
 %legend Folgende Listenabos werden angelegt:
 .col-md-5
   %table.table.table-condensed.table-bordered
