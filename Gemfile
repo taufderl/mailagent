@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.7.2'
+gem 'rails', '~> 5.2.4.4'
 
 # Use sqlite3 as the database for Active Record
 #group :development do
-  gem 'sqlite3', '~> 1.3.13'
+  gem 'sqlite3', '~> 1.4.2'
 #end
 
 group :production do
@@ -19,7 +19,7 @@ gem 'sass-rails', '= 5.0.7'
 gem 'uglifier', '~> 2.7.2'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 5.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  '~> 0.12.2', platforms: :ruby
@@ -47,8 +47,8 @@ gem 'bcrypt', '~> 3.1.5'
 #gem 'twitter-bootstrap-rails', '~> 4.0.0'
 gem 'anjlab-bootstrap-rails', '~> 3.0.3.0', :require => 'bootstrap-rails'
 
-# cancan for authorisation
-gem 'cancan', '~> 1.6.10'
+# cancancan for authorisation
+gem 'cancancan', '~> 3.1.0'
 
 # figaro for setting configs through application.yml and ENV variables
 gem 'figaro', '~> 1.2.0'
@@ -71,7 +71,7 @@ gem 'ransack', '~> 2.3.0'
 gem 'hirb', '~> 0.7.3'
 
 # simple form makes it easier to create forms
-gem 'simple_form', '~> 3.2.0'
+gem 'simple_form', '~> 5.0.3'
 
 # roo for import of csv and odt and files
 gem 'roo', '~> 2.1.1'
@@ -80,9 +80,13 @@ gem 'roo', '~> 2.1.1'
 gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap', '~> 1.0.2'
 
-gem 'haml', '~> 4.0.7'
+gem 'haml', '~> 5.2.0'
 
 gem "highcharts-rails"
 
 gem 'bigdecimal', '~> 1.4'
 
+gem 'bootsnap', require: false
+gem 'listen'
+
+gem 'appraisal'

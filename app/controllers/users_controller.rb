@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if params[:clear_search]
       params[:q] = nil
     end
-    @q = User.includes(:lists).search(params[:q])
+    @q = User.includes(:lists).ransack(params[:q])
     @users = @q.result(distinct: true).paginate(page: params[:page], per_page: 100)
   end
 

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205160237) do
+ActiveRecord::Schema.define(version: 2013_12_05_160237) do
 
   create_table "email_lists", force: :cascade do |t|
-    t.integer  "email_id"
-    t.integer  "list_id"
+    t.integer "email_id"
+    t.integer "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["email_id"], name: "index_email_lists_on_email_id"
@@ -22,25 +22,25 @@ ActiveRecord::Schema.define(version: 20131205160237) do
   end
 
   create_table "emails", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "subject"
+    t.integer "user_id"
+    t.string "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "mail_id"
-    t.string   "status"
-    t.integer  "recipients"
+    t.string "mail_id"
+    t.string "status"
+    t.integer "recipients"
     t.index ["user_id"], name: "index_emails_on_user_id"
   end
 
   create_table "lists", force: :cascade do |t|
-    t.string   "name"
+    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "list_id"
+    t.integer "user_id"
+    t.integer "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["list_id"], name: "index_subscriptions_on_list_id"
@@ -48,13 +48,13 @@ ActiveRecord::Schema.define(version: 20131205160237) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string "name"
+    t.string "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "first_name"
-    t.string   "role"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "role"
   end
 
 end

@@ -11,14 +11,18 @@ class ApplicationController < ActionController::Base
   end
   
   # Workaround for mass-assignment with cancan
-  before_filter do
+  before_action do
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
   end
   
   def current_user
-    @current_user ||= User.find(session[:user].id) if session[:user]
+    if session[:user]
+      @current_user ||= User.find(session[:user]) if session[:user]
+    else
+      @current_user = nil
+    end
   end
   helper_method :current_user
   

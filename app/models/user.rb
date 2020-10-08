@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   after_initialize :init
   before_validation :downcase_email
   
-  default_scope { order("LOWER(users.name)") }
+  default_scope { order("users.name") }
   
   ROLES = ['admin', 'listener', 'author']
   
