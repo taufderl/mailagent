@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.4'
+gem 'rails', '~> 4.2.11.3'
 
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3', '~> 1.3.11'
 end
 group :production do
-  gem 'mysql2', '~> 0.3.12'
+  gem 'mysql2', '~> 0.5.3'
 end
 
 # Use SCSS for stylesheets
@@ -90,3 +90,7 @@ gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'haml', '~> 4.0.7'
 
 gem "highcharts-rails"
+
+gem 'bundler', '~> 1.17.3'
+gem 'bigdecimal', '~> 1.4'
+
