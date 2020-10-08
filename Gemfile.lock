@@ -64,7 +64,8 @@ GEM
       thor (~> 0.14)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    haml (4.0.7)
+    haml (5.0.0)
+      temple (>= 0.8.0)
       tilt
     highcharts-rails (6.0.3)
       railties (>= 3.1)
@@ -166,6 +167,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    temple (0.8.2)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -193,7 +195,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   exception_notification (~> 4.1.1)
   figaro (~> 1.1.1)
-  haml (~> 4.0.7)
+  haml (~> 5.0.0)
   highcharts-rails
   hirb (~> 0.7.3)
   jbuilder (~> 2.3.2)

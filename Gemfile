@@ -87,7 +87,7 @@ gem 'roo', '~> 2.1.1'
 gem 'will_paginate', '~> 3.0.7'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 
-gem 'haml', '~> 4.0.7'
+gem 'haml', '~> 5.0.0'
 
 gem "highcharts-rails"
 
