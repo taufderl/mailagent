@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -18,10 +17,9 @@ ActiveRecord::Schema.define(version: 20131205160237) do
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["email_id"], name: "index_email_lists_on_email_id"
+    t.index ["list_id"], name: "index_email_lists_on_list_id"
   end
-
-  add_index "email_lists", ["email_id"], name: "index_email_lists_on_email_id"
-  add_index "email_lists", ["list_id"], name: "index_email_lists_on_list_id"
 
   create_table "emails", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,9 +29,8 @@ ActiveRecord::Schema.define(version: 20131205160237) do
     t.string   "mail_id"
     t.string   "status"
     t.integer  "recipients"
+    t.index ["user_id"], name: "index_emails_on_user_id"
   end
-
-  add_index "emails", ["user_id"], name: "index_emails_on_user_id"
 
   create_table "lists", force: :cascade do |t|
     t.string   "name"
@@ -46,10 +43,9 @@ ActiveRecord::Schema.define(version: 20131205160237) do
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["list_id"], name: "index_subscriptions_on_list_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
-
-  add_index "subscriptions", ["list_id"], name: "index_subscriptions_on_list_id"
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
