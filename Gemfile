@@ -16,7 +16,7 @@ end
 gem 'sass-rails', '= 5.0.7'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 2.7.2'
+gem 'uglifier', '~> 4.2.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 5.0.0'
@@ -41,7 +41,6 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.5'
 
-
 # bootstrap
 #gem 'less-rails', '~> 2.4.2'
 #gem 'twitter-bootstrap-rails', '~> 4.0.0'
@@ -58,7 +57,7 @@ group :production do
   gem 'exception_notification', '~> 4.4.0'
 
   # fcgi for fcgi script running
-  gem 'passenger', '~> 5.0.20'
+  gem 'passenger', '~> 6.0.6'
 end
 
 # mail for mail pasring ability
@@ -86,7 +85,5 @@ gem "highcharts-rails"
 
 gem 'bigdecimal', '~> 1.4'
 
-gem 'bootsnap', require: false
-gem 'listen'
-
-gem 'appraisal'
+gem 'bootsnap', '1.4.8', require: false
+gem 'listen', '~> 3.2.1'
