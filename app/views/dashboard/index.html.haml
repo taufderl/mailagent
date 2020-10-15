@@ -19,7 +19,7 @@
     #lists_by_users_donut{style: "width:320px; height:320px;"}
     :javascript
       $(function () {
-        $('#lists_by_users_donut').highcharts({
+        Highcharts.chart('lists_by_users_donut', {
             chart: {
                 type: 'pie',
             },
@@ -42,7 +42,7 @@
             },
             series: [{
                 type: 'pie',
-                data: #{@lists_by_users.map{|l| [l.name, l.number_of_users]}.to_json}
+                data: #{@lists_by_users.map{|l| [l.name, l.number_of_users]}.to_json.html_safe}
             }]
         });
       });
@@ -55,7 +55,7 @@
     #lists_by_emails_donut{style: "width:320px; height:320px;"}
     :javascript
       $(function () {
-        $('#lists_by_emails_donut').highcharts({
+        Highcharts.chart('lists_by_emails_donut', {
             chart: {
                 type: 'pie',
             },
@@ -78,7 +78,7 @@
             },
             series: [{
                 type: 'pie',
-                data: #{@lists_by_emails.map{|l| [l.name, l.number_of_emails]}.to_json}
+                data: #{@lists_by_emails.map{|l| [l.name, l.number_of_emails]}.to_json.html_safe}
             }]
         });
       });
@@ -91,7 +91,7 @@
     #users_by_emails_donut{style: "width:320px; height:320px;"}
     :javascript
       $(function () {
-        $('#users_by_emails_donut').highcharts({
+        Highcharts.chart('users_by_emails_donut', {
             chart: {
                 type: 'pie',
             },
@@ -114,7 +114,7 @@
             },
             series: [{
                 type: 'pie',
-                data: #{@users_by_emails.map{|u| [u.full_name, u.number_of_emails]}.to_json}
+                data: #{@users_by_emails.map{|u| [u.full_name, u.number_of_emails]}.to_json.html_safe}
             }]
         });
       });

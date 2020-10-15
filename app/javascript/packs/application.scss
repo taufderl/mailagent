@@ -11,4 +11,5 @@
  *= require_tree .
  *= require_self
  */
-@import "twitter/bootstrap";
+@import '~bootstrap/dist/css/bootstrap';
+@import '~bootstrap/dist/css/bootstrap-theme';

@@ -1,19 +1,19 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4.4'
+gem 'rails', '~> 6.0.3.4'
+
+# Use Puma as the app server
+gem 'puma', '~> 4.1'
 
 # Use sqlite3 as the database for Active Record
-#group :development do
+group :development do
   gem 'sqlite3', '~> 1.4.2'
-#end
-
-group :production do
-  gem 'mysql2', '~> 0.5.3'
+  gem 'listen', '~> 3.2.1'
 end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '= 5.0.7'
+#gem 'sass-rails', '= 6.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.2.0'
@@ -21,30 +21,14 @@ gem 'uglifier', '~> 4.2.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 5.0.0'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer',  '~> 0.12.2', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.4.0'
-
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 5.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.10.1'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.5'
-
-# bootstrap
-#gem 'less-rails', '~> 2.4.2'
-#gem 'twitter-bootstrap-rails', '~> 4.0.0'
-gem 'anjlab-bootstrap-rails', '~> 3.0.3.0', :require => 'bootstrap-rails'
 
 # cancancan for authorisation
 gem 'cancancan', '~> 3.1.0'
@@ -53,6 +37,9 @@ gem 'cancancan', '~> 3.1.0'
 gem 'figaro', '~> 1.2.0'
 
 group :production do
+  # mysql instead of sqlite3
+  gem 'mysql2', '~> 0.5.3'
+
   # exception notification for email exceptions
   gem 'exception_notification', '~> 4.4.0'
 
@@ -61,7 +48,7 @@ group :production do
 end
 
 # mail for mail pasring ability
-gem 'mail', '~> 2.5.4'
+gem 'mail', '~> 2.7.1'
 
 # ransack for easy object search and filtering
 gem 'ransack', '~> 2.3.0'
@@ -81,9 +68,9 @@ gem 'will_paginate-bootstrap', '~> 1.0.2'
 
 gem 'haml', '~> 5.2.0'
 
-gem "highcharts-rails"
-
 gem 'bigdecimal', '~> 1.4'
 
-gem 'bootsnap', '1.4.8', require: false
-gem 'listen', '~> 3.2.1'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
+
+gem 'webpacker', '~> 5.2.1'
