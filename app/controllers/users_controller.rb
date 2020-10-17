@@ -83,7 +83,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to :back, alert: "That didn't work" }
+        format.html { redirect_back fallback_location: root_path, alert: "That didn't work" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
