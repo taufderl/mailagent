@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'cgi'
 require 'net/http'
 require 'uri'
