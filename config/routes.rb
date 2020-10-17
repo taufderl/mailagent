@@ -21,7 +21,7 @@ Mailagent::Application.routes.draw do
   # limit incoming mails to mailserver ip
   if Rails.env.production?
     post "incoming_messages" => 'incoming_message#create', :constraints => {:ip => /127.0.0.1/}
-    else
+  else
     post "incoming_messages" => 'incoming_message#create'
   end 
     
