@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-require 'cgi'
 require 'net/http'
 require 'uri'
 require 'json'
+require 'net_http_unix'
 
 startTime = Time.now
 
@@ -13,14 +13,16 @@ file = File.open filename, 'w'
 file.write input
 file.close
 
-data = "message=#{CGI.escape(input)}"
+# create request
+uri = URI('http://localhost:1337/incoming_messages')
+request = Net::HTTP::Post.new uri
+request.body = { "message" => input }.to_json
+request['Content-Type'] = 'application/json'
 
-filename_data = "/home/kkb/mailagent/log/maildump_#{Time.now.to_i}.log"
-file = File.open filename_data, 'w'
-file.write data
-file.close
-
-result = Net::HTTP.post URI('http://localhost:1337/incoming_messages'), { "message" => input }.to_json, "Content-Type" => "application/json"
+# send request through socket
+client = NetX::HTTPUnix.new('unix:///home/kkb/mailagent/tmp/sockets/mailagent.sock')
+result = client.request(request)
+puts result.body
 
 endTime = Time.now
 

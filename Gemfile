@@ -74,3 +74,6 @@ gem 'bigdecimal', '~> 1.4'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'webpacker', '~> 5.2.1'
+
+# to communicate with the websocket
+gem 'net_http_unix'
