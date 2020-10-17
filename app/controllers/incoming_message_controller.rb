@@ -13,7 +13,7 @@ class IncomingMessageController < ApplicationController
         # then set status to send successful
         email.status = 'ok'
         email.save
-        render text: "|#{message_id}| received again -> OK :)"
+        render plain: "|#{message_id}| received again -> OK :)", layout: false
         return false
       end
 
@@ -22,7 +22,7 @@ class IncomingMessageController < ApplicationController
       #test if user exists in DB
       if user == nil
         ErrorMailer.send_no_such_user_error(received_mail).deliver
-        render text: "|#{message_id}| No such user: #{received_mail.from.map(&:downcase)}"
+        render plain: "|#{message_id}| No such user: #{received_mail.from.map(&:downcase)}", layout: false
         return false
       end
 
@@ -35,14 +35,14 @@ class IncomingMessageController < ApplicationController
       if lists.empty?
         # Send error reply when no list recognised
         ErrorMailer.no_lists_recognized_error(received_mail).deliver
-        render text: "|#{message_id}| No lists in mail"
+        render plain: "|#{message_id}| No lists in mail", layout: false
         return false
       end
 
       #If the user is a listener he has to be in all the addressed lists
       if user.listener? and (lists - user.lists).any?
         ErrorMailer.send_user_not_in_list_error(received_mail).deliver
-        render text: "|#{message_id}| User not in list: #{lists-user.lists}"
+        render plain: "|#{message_id}| User not in list: #{lists-user.lists}", layout: false
         return false
       end
 
@@ -50,6 +50,7 @@ class IncomingMessageController < ApplicationController
       recipients = get_recipients_from_lists(lists)
       received_mail.bcc = recipients
       # set mailagent address as TO address
+      puts ENV['MAILAGENT_ADDRESS']
       received_mail.to = ENV['MAILAGENT_ADDRESS']
 
       # store to database
@@ -61,15 +62,14 @@ class IncomingMessageController < ApplicationController
         #Send mail and be happy
         timestamp = Time.now
         File.open("./log/outgoing_mail_#{timestamp}.log", 'w') {|f| f.write(received_mail.to_s) }
-        sent_mail = received_mail.deliver!
+        #sent_mail = received_mail.deliver!
 
-        render text: "|#{message_id}| saved and sent successfully"
+        render plain: "|#{message_id}| saved and sent successfully", layout: false
       else
         #Strange thing happened, notify owner
         DebugMailer.send_email("NOT Successful!\n" + email.inspect, "ERROR while saving email, not delivered").deliver
         render text: "|#{message_id}| could not save email -> This should not happen at all."
       end
-
   end
 
   private
