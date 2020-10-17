@@ -22,7 +22,6 @@ request['Content-Type'] = 'application/json'
 # send request through socket
 client = NetX::HTTPUnix.new('unix:///home/kkb/mailagent/tmp/sockets/mailagent.sock')
 result = client.request(request)
-puts result.body
 
 endTime = Time.now
 
