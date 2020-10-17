@@ -50,7 +50,6 @@ class IncomingMessageController < ApplicationController
       recipients = get_recipients_from_lists(lists)
       received_mail.bcc = recipients
       # set mailagent address as TO address
-      puts ENV['MAILAGENT_ADDRESS']
       received_mail.to = ENV['MAILAGENT_ADDRESS']
 
       # store to database
@@ -62,7 +61,7 @@ class IncomingMessageController < ApplicationController
         #Send mail and be happy
         timestamp = Time.now
         File.open("./log/outgoing_mail_#{timestamp}.log", 'w') {|f| f.write(received_mail.to_s) }
-        #sent_mail = received_mail.deliver!
+        sent_mail = received_mail.deliver!
 
         render plain: "|#{message_id}| saved and sent successfully", layout: false
       else
