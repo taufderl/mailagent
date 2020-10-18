@@ -8,54 +8,55 @@
     = csrf_meta_tags
     = favicon_pack_tag 'favicon.png'
   %body
-    %nav.navbar.navbar-static-top.navbar-inverse.navbar-collapse{:role => "navigation"}
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark{:role => "navigation"}
       .navbar-header
-        %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
-          %span.sr-only Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        = link_to t('page.title'), dashboard_path, html_options = {class: "navbar-brand"}
+        %span.navbar-brand= t('page.title')
       - if current_user
         #navbar-main.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li{:class => "#{'active' if params[:controller] == 'dashboard'}"}= link_to t('links.dashboard'), dashboard_path
-            %li{:class => "dropdown #{'active' if params[:controller] == 'users'}"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %ul.navbar-nav.mr-auto
+            %li.nav-item{:class => "#{'active' if params[:controller] == 'dashboard'}"}
+              = link_to t('links.dashboard'), dashboard_path, class: 'nav-link'
+            %li.nav-item.dropdown{:class => "#{'active' if params[:controller] == 'users' and not params[:action].include?('profile')}"}
+              %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 = t('user.title')
                 %b.caret
               %ul.dropdown-menu
-                %li
-                  = link_to t('links.users'), :users
-                %li= link_to t('links.admins'), users_path({:q => {'role_cont' => 'admin'}})
-                %li= link_to t('links.new_user'), :new_user
-            %li{:class => "dropdown #{'active' if params[:controller] == 'lists'}"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = link_to t('links.users'), :users, class: 'dropdown-item'
+                = link_to t('links.admins'), users_path({:q => {'role_cont' => 'admin'}}), class: 'dropdown-item'
+                = link_to t('links.new_user'), :new_user, class: 'dropdown-item'
+            %li.nav-item.dropdown{:class => "#{'active' if params[:controller] == 'lists'}"}
+              %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 = t('list.title')
                 %b.caret
               %ul.dropdown-menu
-                %li= link_to t('list.title'), :lists
-                %li= link_to t('links.new_list'), :new_list
-            %li{:class => "#{'active' if params[:controller] == 'emails'}"}= link_to t('email.title'), :emails
-            %li{:class => "#{'active' if params[:controller] == 'import'}"}= link_to t('links.import'), import_path
-            %li{:class => "#{'active' if params[:controller] == 'feedback'}"}= link_to t('links.feedback'), :feedback_new
+                = link_to t('list.title'), :lists, class: 'dropdown-item'
+                = link_to t('links.new_list'), :new_list, class: 'dropdown-item'
+            %li.nav-item{:class => "#{'active' if params[:controller] == 'emails'}"}
+              = link_to t('email.title'), :emails, class: 'nav-link'
+            %li.nav-item{:class => "#{'active' if params[:controller] == 'import'}"}
+              = link_to t('links.import'), import_path, class: 'nav-link'
+            %li.nav-item{:class => "#{'active' if params[:controller] == 'feedback'}"}
+              = link_to t('links.feedback'), :feedback_new, class: 'nav-link'
           / NAVBAR
-          %ul.nav.navbar-nav.navbar-right
-            %li= link_to current_user.email, profile_path
-            %li= link_to "Logout", logout_path, method: :delete
+          %ul.navbar-nav.my-2.my-lg-0
+            %li.nav-item{:class => "#{'active' if params[:controller] == 'users' and params[:action].include?('profile')}"}
+              = link_to current_user.email, profile_path, class: 'nav-link'
+            %li.nav-item
+              = link_to "Logout", logout_path, method: :delete, class: 'nav-link'
         / /.nav-collapse
+      - else
+        #navbar-main.collapse.navbar-collapse
+          %ul.navbar-nav.mr-auto
+            %li.nav-item{:class => "#{'active' if params[:controller] == 'session'}"}
+              = link_to t('session.login'), '/start', class: 'nav-link'
     .container
       .row
         - flash.each do |key, value|
-          %div{:class => "#{flash_class(key)}"}
+          %div.alert.col-lg-12.col-md-12{:class => "#{flash_class(key)}", role: 'alert'}
             %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
-            %p= value
+            = value
       .row
         .col-lg-12.col-md-12
           = yield
       / /row
     / /container
-    %footer
-      %div
-        %p.copyright.pull-right
-          © Tim auf der Landwehr 2020

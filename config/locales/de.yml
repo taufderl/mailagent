@@ -1,6 +1,6 @@
 de:
   page:
-    title: 'KJB-Mailagent'
+    title: 'Mailagent'
   session:
     login: 'Login'
     email: 'E-Mail'
@@ -19,7 +19,7 @@ de:
     profile: 'Profil'
     admins: 'Administratoren anzeigen'
     import: 'Datenimport'
-    dashboard: 'Übersicht'
+    dashboard: 'Dashboard'
     feedback: 'Feedback'
     edit_profile: 'Profil bearbeiten'
     
