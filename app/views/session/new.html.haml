@@ -1,13 +1,15 @@
-.col-lg-6
-  = simple_form_for :login, html: { :class => 'form-horizontal', role: 'form' } do |f|
-    .form-group
-      = f.label :email, t('session.email'), class: 'control-label col-sm-4'
-      .col-sm-6
-        = f.text_field :email, class: 'form-control'
-    .form-group
-      = f.label :password, t('session.password'), class: 'control-label col-sm-4'
-      .col-sm-6
-        = f.password_field :password, class: 'form-control'
-    .form-group
-      .col-sm-offset-4.col-sm-3
-        = f.submit t('session.login'), class: 'btn btn-primary'
+.d-flex.justify-content-center
+  .col-4.align-self-center.card.card-block
+    = simple_form_for :login, html: { :class => 'form-horizontal', role: 'form' } do |f|
+      .form-group
+        = f.label :email, t('session.email'), class: 'control-label col-sm-4'
+        .col-sm-8
+          = f.text_field :email, class: 'form-control'
+      .form-group
+        = f.label :password, t('session.password'), class: 'control-label col-sm-4'
+        .col-sm-8
+          = f.password_field :password, class: 'form-control'
+      .form-group
+        .col-sm-offset-4.col-sm-3
+          = f.submit t('session.login'), class: 'btn btn-primary'
+

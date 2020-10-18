@@ -49,14 +49,18 @@
           %ul.navbar-nav.mr-auto
             %li.nav-item{:class => "#{'active' if params[:controller] == 'session'}"}
               = link_to t('session.login'), '/start', class: 'nav-link'
-    .container
-      .row
-        - flash.each do |key, value|
-          %div.alert.col-lg-12.col-md-12{:class => "#{flash_class(key)}", role: 'alert'}
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
-            = value
-      .row
-        .col-lg-12.col-md-12
+    .container-fluid
+      .row.mt-2
+        .col-4
+        .col-4
+          - flash.each do |key, value|
+            %div.alert.col-lg-12.col-md-12{:class => "#{flash_class(key)}", role: 'alert'}
+              %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
+              = value
+      .row.mt-2
+        .col-1
+        .col-10
           = yield
+        .col-1
       / /row
     / /container

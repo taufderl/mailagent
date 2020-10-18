@@ -1,7 +1,7 @@
 %h1.page-header
   Dashboard
 .row
-  .col-md-4
+  .col-4
     %dl.dl-horizontal
       %dt= t('dashboard.count_lists')
       %dd= @number_of_lists
@@ -10,7 +10,7 @@
       %dt= t('dashboard.count_users')
       %dd= @number_of_users
 .row
-  .col-md-4
+  .col-4
     %legend= t 'dashboard.top_lists_by_users'
     %dl.dl-horizontal
       - @lists_by_users.take(10).each do |list|
@@ -46,7 +46,7 @@
             }]
         });
       });
-  .col-md-4
+  .col-4
     %legend= t 'dashboard.top_lists_by_emails'
     %dl.dl-horizontal
       - @lists_by_emails.take(10).each do |list|
@@ -82,7 +82,7 @@
             }]
         });
       });
-  .col-md-4
+  .col-4
     %legend= t 'dashboard.top_users_by_emails'
     %dl.dl-horizontal
       - @users_by_emails.take(10).each do |user|
