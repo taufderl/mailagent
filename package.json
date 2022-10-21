@@ -1,15 +1,15 @@
 {
   "dependencies": {
-    "@rails/activestorage": "^6.0.3-4",
-    "@rails/ujs": "^6.0.3-4",
-    "@rails/webpacker": "5.2.1",
-    "bootstrap": "3.4",
-    "highcharts": "^8.2.0",
-    "jquery": "^3.5.1",
+    "@rails/activestorage": "^7.0.4",
+    "@rails/ujs": "^7.0.4",
+    "@rails/webpacker": "5.4.3",
+    "bootstrap": "5.2.2",
+    "highcharts": "^10.2.1",
+    "jquery": "^3.6.1",
     "jquery-ui": "^1.13.2",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^4.11.1"
   }
 }
