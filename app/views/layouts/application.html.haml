@@ -17,7 +17,7 @@
             %li.nav-item{:class => "#{'active' if params[:controller] == 'dashboard'}"}
               = link_to t('links.dashboard'), dashboard_path, class: 'nav-link'
             %li.nav-item.dropdown{:class => "#{'active' if params[:controller] == 'users' and not params[:action].include?('profile')}"}
-              %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %a.nav-link.dropdown-toggle{"data-bs-toggle" => "dropdown", :href => "#"}
                 = t('user.title')
                 %b.caret
               %ul.dropdown-menu
@@ -25,7 +25,7 @@
                 = link_to t('links.admins'), users_path({:q => {'role_cont' => 'admin'}}), class: 'dropdown-item'
                 = link_to t('links.new_user'), :new_user, class: 'dropdown-item'
             %li.nav-item.dropdown{:class => "#{'active' if params[:controller] == 'lists'}"}
-              %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %a.nav-link.dropdown-toggle{"data-bs-toggle" => "dropdown", :href => "#"}
                 = t('list.title')
                 %b.caret
               %ul.dropdown-menu
