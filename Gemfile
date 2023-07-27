@@ -53,6 +53,9 @@ gem 'haml', '~> 6.0.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.13.0', require: false
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 
 # use webpacker
 gem 'webpacker', '~> 5.4.3'

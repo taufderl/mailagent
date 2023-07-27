@@ -61,12 +61,13 @@ GEM
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     bcrypt (3.1.18)
-    bootsnap (1.13.0)
+    bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
     cancancan (3.4.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    date (3.3.3)
     erubi (1.11.0)
     exception_notification (4.5.0)
       actionmailer (>= 5.2, < 8)
@@ -98,6 +99,15 @@ GEM
     minitest (5.17.0)
     msgpack (1.6.0)
     mysql2 (0.5.4)
+    net-imap (0.3.6)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
     net_http_unix (0.2.2)
     nio4r (2.5.8)
     nokogiri (1.14.3)
@@ -165,6 +175,7 @@ GEM
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.11)
+    timeout (0.4.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -195,6 +206,9 @@ DEPENDENCIES
   listen (~> 3.7.1)
   mail (~> 2.7.1)
   mysql2 (~> 0.5.4)
+  net-imap
+  net-pop
+  net-smtp
   net_http_unix (~> 0.2.2)
   puma (~> 6.0.0)
   rails (~> 6.1.7)
