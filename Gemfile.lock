@@ -113,7 +113,7 @@ GEM
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    puma (6.0.2)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
@@ -210,7 +210,7 @@ DEPENDENCIES
   net-pop
   net-smtp
   net_http_unix (~> 0.2.2)
-  puma (~> 6.0.0)
+  puma (~> 6.3.1)
   rails (~> 6.1.7)
   ransack (~> 3.2.1)
   roo (~> 2.9.0)

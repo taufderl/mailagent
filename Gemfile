@@ -19,7 +19,7 @@ gem 'cancancan', '~> 3.4.0'
 gem 'figaro', '~> 1.2.0'
 
 # Use Puma as the app server
-gem 'puma', '~> 6.0.0'
+gem 'puma', '~> 6.3.1'
 
 group :production do
   # mysql instead of sqlite3
